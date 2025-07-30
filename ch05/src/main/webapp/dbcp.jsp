@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 		<head>
-		<meta charset="UTF-8">
-		<title>DBCP 실습하기</title>
-			<%--
-				날짜 : 2025.07.29.
+			<meta charset="UTF-8">
+			<title>DBCP 실습하기</title>
+			<!-- 
+				날짜 : 2025.07.30.
 				이름 : 강민철
-				내용 : JDBC 실습하기
-			--%>
+				내용 : JSP 파일 업로드 실습하기
+			 -->
 		</head>
 		<body>
 			<h3>DBCP 실습</h3>
