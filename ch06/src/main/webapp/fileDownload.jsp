@@ -65,7 +65,7 @@
 				<td><%= fd.getName() %></td>
 				<td><a href="/ch06/proc/fileDownload.jsp?no=<%= fd.getNo() %>"><%= fd.getOname() %>.</td>
 				<td>
-					<a href="#">삭제</a>
+					<a href="/ch06/proc/fileDelete.jsp?no=<%= fd.getNo() %>">삭제</a>
 					<a href="/ch06/proc/fileDownload.jsp?no=<%= fd.getNo() %>">다운로드</a>
 				</td>
 			</tr>
