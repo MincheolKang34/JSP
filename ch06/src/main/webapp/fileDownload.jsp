@@ -28,6 +28,8 @@
 			dto.setOname(rs.getString(4));
 			dto.setSname(rs.getString(5));
 			dto.setRdate(rs.getString(6));
+			
+			files.add(dto);
 		}
 	}catch(Exception e) {
 		e.printStackTrace();
@@ -56,16 +58,18 @@
 				<th>파일명</th>
 				<th>관리</th>
 			</tr>
+			<% for(FileDTO fd : files){ %>
 			<tr>
-				<td>1</td>
-				<td>파일 업로드 테스트</td>
-				<td>김유신</td>
-				<td>세부훈련시간표.pdf</td>
+				<td><%= fd.getNo() %></td>
+				<td><%= fd.getTitle() %></td>
+				<td><%= fd.getName() %></td>
+				<td><a href="/ch06/proc/fileDownload.jsp?no=<%= fd.getNo() %>"><%= fd.getOname() %>.</td>
 				<td>
 					<a href="#">삭제</a>
-					<a href="#">다운로드</a>
+					<a href="/ch06/proc/fileDownload.jsp?no=<%= fd.getNo() %>">다운로드</a>
 				</td>
 			</tr>
+			<% } %>
 		</table>
 	</body>
 </html>
