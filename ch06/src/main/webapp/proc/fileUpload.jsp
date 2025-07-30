@@ -38,7 +38,7 @@
 	part1.write(path + "/" + fname1);
 	part2.write(path + "/" + fname2);
 	
-	// 중복되지 않는 파이멸 수정
+	// 중복되지 않는 파일명 수정
 	String ext1 = fname1.substring(fname1.lastIndexOf("."));
 	String ext2 = fname2.substring(fname2.lastIndexOf("."));
 	
