@@ -33,16 +33,18 @@ public class RegisterController extends HttpServlet{
 		String hp = req.getParameter("hp");
 		String age = req.getParameter("age");
 		
-		//서비스 전달을 위해 DTO 생성
+		//서비스 전달을 위해 DTO 생성(전송 객체 생성)
 		User1DTO dto = new User1DTO();
 		dto.setUser_id(user_id);
 		dto.setName(name);
 		dto.setHp(hp);
 		dto.setAge(age);
 		
-		// 서비스 요청
+		// 서비스 요청 (객체 전달)
 		service.register(dto);
 		
+		// 이동
+		resp.sendRedirect("/ch09/user1/list.do");
 	}
 
 }
