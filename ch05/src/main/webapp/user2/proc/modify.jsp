@@ -1,3 +1,7 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -13,7 +17,26 @@
 	String pass = "1234";
 	
 	// 데이터베이스 접속 및 SQL 실행
-	
+	try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		Connection conn = DriverManager.getConnection(host, user, pass);
+		
+		String sql = "update user2 set name=?, hp=?, age=? where user_id=?";
+		PreparedStatement psmt = conn.prepareStatement(sql);
+		psmt.setString(1, name);
+		psmt.setString(2, hp);
+		psmt.setString(3, age);
+		psmt.setString(4, user_id);
+		
+		psmt.executeUpdate();
+		
+		psmt.close();
+		conn.close();
+		
+	}catch(Exception e) {
+		e.printStackTrace();
+	}
 	
 	// 목록 이동
+	response.sendRedirect("../list.jsp");
 %>
