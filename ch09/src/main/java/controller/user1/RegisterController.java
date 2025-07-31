@@ -14,6 +14,8 @@ import service.User1Service;
 @WebServlet("/user1/register.do")
 public class RegisterController extends HttpServlet{
 	
+	private static final long serialVersionUID = 1L;
+	
 	// Service 싱클톤 객체 가져오기
 	private User1Service service = User1Service.getInstance();
 

@@ -1,10 +1,7 @@
 package controller.user1;
 
 import java.io.IOException;
-import java.util.List;
 
-import dto.User1DTO;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
