@@ -20,7 +20,7 @@
 		<form action="/ch08/hello.do" method="post">
 			<input type="text" name="id"/><br/>
 			<input type="password" name="pw"/><br/>
-			<input type="submit" name="submit"/><br/>
+			<input type="submit" value="전송하기"/><br/>
 		</form>
 	</body>
 </html>
