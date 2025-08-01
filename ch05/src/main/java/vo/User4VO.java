@@ -2,28 +2,22 @@ package vo;
 
 public class User4VO {
 
-	private String user_id;
 	private String name;
-	private String hp;
+	private String gender;
 	private int age;
+	private String address;
 	
-	public String getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getHp() {
-		return hp;
+	public String getGender() {
+		return gender;
 	}
-	public void setHp(String hp) {
-		this.hp = hp;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	public int getAge() {
 		return age;
@@ -31,9 +25,16 @@ public class User4VO {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	
 	@Override
 	public String toString() {
-		return "User1VO [user_id=" + user_id + ", name=" + name + ", hp=" + hp + ", age=" + age + "]";
+		return "User4VO [name=" + name + ", gender=" + gender + ", age=" + age + ", address=" + address + "]";
 	}
+	
 }
