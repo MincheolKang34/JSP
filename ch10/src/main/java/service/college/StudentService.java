@@ -24,14 +24,14 @@ public enum StudentService {
 	}
 	public void modify() {
 		try {
-			conn = getConnection(DBCP);
+//			conn = getConnection(DBCP);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public void delete() {
 		try {
-			conn = getConnection(DBCP);
+//			conn = getConnection(DBCP);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

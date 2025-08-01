@@ -1,6 +1,7 @@
 /.metadata/
 /Servers/
 **/.classpath
+**/.classpath/
 **/.settings/
 **/.settings
 **/bin/

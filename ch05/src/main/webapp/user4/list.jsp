@@ -26,6 +26,12 @@
 		
 		while(rs.next()) {
 			User4VO vo = new User4VO();
+			vo.setName(rs.getString(1));
+			vo.setGender(rs.getString(2));
+			vo.setAge(rs.getInt(3));
+			vo.setAddress(rs.getString(4));
+			
+			users.add(vo);
 		}
 	}catch(Exception e) {
 		e.printStackTrace();
@@ -50,10 +56,20 @@
 				<th>성별</th>
 				<th>나이</th>
 				<th>주소</th>
+				<th>관리</th>
 			</tr>
-			<tr>
-				<td></td>
-			</tr>
+			<% for(User4VO vo : users){ %>
+				<tr>
+					<td><%= vo.getName() %></td>
+					<td><%= vo.getGender() %></td>
+					<td><%= vo.getAge() %></td>
+					<td><%= vo.getAddress() %></td>
+					<td>
+						<a href="./modify.jsp?name=<%= vo.getName() %>">수정</a>
+						<a href="./delete.jsp?name=<%= vo.getName() %>">삭제</a>
+					</td>
+				</tr>
+			<% } %>
 		</table>
 	</body>
 </html>
