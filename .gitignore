@@ -2,3 +2,5 @@
 /Servers/
 **/.classpath
 **/.settings/
+**/.settings
+**/bin/
