@@ -2,16 +2,17 @@ package vo;
 
 public class User6VO {
 
-	private String user_id;
+	private int seq;
 	private String name;
-	private String hp;
+	private String gender;
 	private int age;
+	private String addr;
 	
-	public String getUser_id() {
-		return user_id;
+	public int getSeq() {
+		return seq;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setSeq(int seq) {
+		this.seq = seq;
 	}
 	public String getName() {
 		return name;
@@ -19,11 +20,11 @@ public class User6VO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getHp() {
-		return hp;
+	public String getGender() {
+		return gender;
 	}
-	public void setHp(String hp) {
-		this.hp = hp;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	public int getAge() {
 		return age;
@@ -31,9 +32,16 @@ public class User6VO {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
 	@Override
 	public String toString() {
-		return "User1VO [user_id=" + user_id + ", name=" + name + ", hp=" + hp + ", age=" + age + "]";
+		return "User6VO [seq=" + seq + ", name=" + name + ", gender=" + gender + ", age=" + age + ", addr=" + addr
+				+ "]";
 	}
 }

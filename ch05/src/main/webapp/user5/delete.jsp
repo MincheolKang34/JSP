@@ -1,14 +1,10 @@
-<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	// 요청 데이터 가져오기
+	// 요청 데이터 받기
 	String name = request.getParameter("name");
-	String gender = request.getParameter("gender");
-	String age = request.getParameter("age");
-	String address = request.getParameter("address");
-	System.out.println(gender);
 	
 	// 데이터베이스 접속 정보
 	String host = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -20,16 +16,11 @@
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		
 		Connection conn = DriverManager.getConnection(host, user, pass);
-		String sql = "update user4 set gender=?, age=?, addr=? where name=?";
-		PreparedStatement psmt = conn.prepareStatement(sql);
-		psmt.setString(1, gender);
-		psmt.setString(2, age);
-		psmt.setString(3, address);
-		psmt.setString(4, name);
+		Statement stmt = conn.createStatement();
+		String sql = "delete from user5 where name='"+name+"'";
+		stmt.executeUpdate(sql);
 		
-		psmt.executeUpdate();
-		
-		psmt.close();
+		stmt.close();
 		conn.close();
 		
 	}catch(Exception e) {
@@ -37,5 +28,5 @@
 	}
 	
 	// 목록 이동
-	response.sendRedirect("../list.jsp");
+	response.sendRedirect("./list.jsp");
 %>

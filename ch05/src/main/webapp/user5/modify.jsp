@@ -1,5 +1,5 @@
 <%@page import="java.sql.ResultSet"%>
-<%@page import="vo.User4VO"%>
+<%@page import="vo.User5VO"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -14,7 +14,7 @@
 	String pass = "1234";
 	
 	// 데이터 객체 생성
-	User4VO vo = null;
+	User5VO vo = null;
 	
 	// 데이터베이스 접속 및 sql 실행
 	try {
@@ -22,11 +22,11 @@
 		
 		Connection conn = DriverManager.getConnection(host, user, pass);
 		Statement stmt = conn.createStatement();
-		String sql = "select * from user4 where name='"+name+"'";
+		String sql = "select * from user5 where name='"+name+"'";
 		ResultSet rs = stmt.executeQuery(sql);
 		
 		if(rs.next()) {
-			vo = new User4VO();
+			vo = new User5VO();
 			vo.setName(rs.getString(1));
 			vo.setGender(rs.getString(2));
 			vo.setAge(rs.getInt(3));
@@ -48,7 +48,7 @@
 		<title>user4::list</title>
 	</head>
 	<body>
-		<h3>User4 수정</h3>
+		<h3>User5 수정</h3>
 		
 		<a href="../jdbc.jsp">처음으로</a>
 		<a href="./list.jsp">목록으로</a>

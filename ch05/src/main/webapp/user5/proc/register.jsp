@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
@@ -8,8 +9,7 @@
 	String gender = request.getParameter("gender");
 	String age = request.getParameter("age");
 	String address = request.getParameter("address");
-	System.out.println(gender);
-	
+
 	// 데이터베이스 접속 정보
 	String host = "jdbc:oracle:thin:@localhost:1521:xe";
 	String user = "mincheolkang34";
@@ -20,12 +20,12 @@
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		
 		Connection conn = DriverManager.getConnection(host, user, pass);
-		String sql = "update user4 set gender=?, age=?, addr=? where name=?";
+		String sql = "insert into user5 values(?,?,?,?)";
 		PreparedStatement psmt = conn.prepareStatement(sql);
-		psmt.setString(1, gender);
-		psmt.setString(2, age);
-		psmt.setString(3, address);
-		psmt.setString(4, name);
+		psmt.setString(1, name);
+		psmt.setString(2, gender);
+		psmt.setString(3, age);
+		psmt.setString(4, address);
 		
 		psmt.executeUpdate();
 		
@@ -36,6 +36,6 @@
 		e.printStackTrace();
 	}
 	
-	// 목록 이동
+	// 목록 이등
 	response.sendRedirect("../list.jsp");
 %>
