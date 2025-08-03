@@ -11,29 +11,44 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import dto.User5DTO;
+import dto.User6DTO;
 
 // DAO(Data Access Objcet) : DB 처리를 수행하는 객체
-public class User5DAO {
+public class User6DAO {
 
 	// DAO는 기본 싱글톤
-	private final static User5DAO INSTANCE = new User5DAO();
-	public static User5DAO getInstance() {
+	private final static User6DAO INSTANCE = new User6DAO();
+	public static User6DAO getInstance() {
 		return INSTANCE;
 	}
 	
-	private User5DAO() {}
+	private User6DAO() {}
 	
 	// 기본 CRUD 메서드
-	public void insertUser5(User5DTO dto) {
+	public void insertUser6(User6DTO dto) {
 		
 		try {
 			Context ctx = (Context) new InitialContext().lookup("java:comp/env");
 			DataSource ds = (DataSource) ctx.lookup("jdbc/mincheolkang34");
 			
+			// 시퀀스 생성 여부 체크
 			Connection conn = ds.getConnection();
-			String sql = "INSERT INTO USER5 VALUES (?,?,?,?)";
-			PreparedStatement psmt = conn.prepareStatement(sql);
+			Statement psmt1 = conn.createStatement();
+			String sql1 = "SELECT sequence_name FROM user_sequences WHERE sequence_name = 'SEQ_USER6'";
+			ResultSet rs = psmt1.executeQuery(sql1);
+			
+			// 시퀀스 없을 시 생성(테이블에 데이터를 처음 넣는 경우)
+			if(!(rs.next())) {
+				String sql2 = "CREATE SEQUENCE seq_user6 INCREMENT BY 1 START WITH 1";
+				PreparedStatement psmt2 = conn.prepareStatement(sql2);
+				psmt2.executeUpdate();
+				psmt2.close();
+			}
+			rs.close();
+			psmt1.close();
+			
+			String sql3 = "INSERT INTO USER6 VALUES (seq_user6.nextval,?,?,?,?)";
+			PreparedStatement psmt = conn.prepareStatement(sql3);
 			psmt.setString(1, dto.getName());
 			psmt.setString(2, dto.getGender());
 			psmt.setInt(3, dto.getAge());
@@ -48,27 +63,28 @@ public class User5DAO {
 			e.printStackTrace();
 		}
 	}
-	public User5DTO selectUser5(String name) {
+	public User6DTO selectUser6(String seq) {
 		
-		User5DTO dto = null;
+		User6DTO dto = null;
 		
 		try {
 			Context ctx = (Context) new InitialContext().lookup("java:comp/env");
 			DataSource ds = (DataSource) ctx.lookup("jdbc/mincheolkang34");
 			
 			Connection conn = ds.getConnection();
-			String sql = "SELECT * FROM USER5 WHERE name=?";
+			String sql = "SELECT * FROM USER6 WHERE seq=?";
 			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, name);
+			psmt.setString(1, seq);
 			
 			ResultSet rs = psmt.executeQuery();
 			
 			if(rs.next()) {
-				dto = new User5DTO();
-				dto.setName(rs.getString(1));
-				dto.setGender(rs.getString(2));
-				dto.setAge(rs.getInt(3));
-				dto.setAddr(rs.getString(4));
+				dto = new User6DTO();
+				dto.setSeq(rs.getInt(1));
+				dto.setName(rs.getString(2));
+				dto.setGender(rs.getString(3));
+				dto.setAge(rs.getInt(4));
+				dto.setAddr(rs.getString(5));
 			}
 			
 			rs.close();
@@ -81,9 +97,9 @@ public class User5DAO {
 		
 		return dto;
 	}
-	public List<User5DTO> selectAllUser5() {
+	public List<User6DTO> selectAllUser6() {
 		
-		List<User5DTO> dtoList = new ArrayList<User5DTO>();
+		List<User6DTO> dtoList = new ArrayList<User6DTO>();
 		
 		try {
 			Context ctx = (Context) new InitialContext().lookup("java:comp/env");
@@ -92,15 +108,16 @@ public class User5DAO {
 			Connection conn = ds.getConnection();
 			Statement stmt = conn.createStatement();
 			
-			String sql = "SELECT * FROM USER5";
+			String sql = "SELECT * FROM USER6";
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				User5DTO dto = new User5DTO();
-				dto.setName(rs.getString(1));
-				dto.setGender(rs.getString(2));
-				dto.setAge(rs.getInt(3));
-				dto.setAddr(rs.getString(4));
+				User6DTO dto = new User6DTO();
+				dto.setSeq(rs.getInt(1));
+				dto.setName(rs.getString(2));
+				dto.setGender(rs.getString(3));
+				dto.setAge(rs.getInt(4));
+				dto.setAddr(rs.getString(5));
 				
 				dtoList.add(dto);
 			}
@@ -115,7 +132,7 @@ public class User5DAO {
 		
 		return dtoList;
 	}
-	public void updateUser5(User5DTO dto) {
+	public void updateUser6(User6DTO dto) {
 		
 		try {
 			Context ctx = (Context) new InitialContext().lookup("java:comp/env");
@@ -123,12 +140,13 @@ public class User5DAO {
 			
 			Connection conn = ds.getConnection();
 			
-			String sql = "UPDATE USER5 SET gender=?, age=?, addr=? WHERE name=?";
+			String sql = "UPDATE USER6 SET name=?, gender=?, age=?, addr=? WHERE seq=?";
 			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getGender());
-			psmt.setInt(2, dto.getAge());
-			psmt.setString(3, dto.getAddr());
-			psmt.setString(4, dto.getName());
+			psmt.setString(1, dto.getName());
+			psmt.setString(2, dto.getGender());
+			psmt.setInt(3, dto.getAge());
+			psmt.setString(4, dto.getAddr());
+			psmt.setInt(5, dto.getSeq());
 			
 			psmt.executeUpdate();
 			
@@ -139,7 +157,7 @@ public class User5DAO {
 			e.printStackTrace();
 		}
 	}
-	public void deleteUser5(String name) {
+	public void deleteUser6(String seq) {
 		
 	try {
 		Context ctx = (Context) new InitialContext().lookup("java:comp/env");
@@ -147,9 +165,9 @@ public class User5DAO {
 		
 		Connection conn = ds.getConnection();
 		
-		String sql = "DELETE FROM USER5 WHERE name=?";
+		String sql = "DELETE FROM USER6 WHERE seq=?";
 		PreparedStatement psmt = conn.prepareStatement(sql);
-		psmt.setString(1, name);
+		psmt.setString(1, seq);
 		
 		psmt.executeUpdate();
 		
