@@ -4,10 +4,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>user6::list</title>
+		<title>user7::list</title>
 	</head>
 	<body>
-		<h3>User6 등록</h3>
+		<h3>User7 등록</h3>
 		<a href="../jdbc.jsp">처음으로</a>
 		<a href="./list.jsp">목록으로</a>
 		
@@ -20,22 +20,15 @@
 					</td>
 				</tr>
 				<tr>
-					<td>성별</td>
-					<td>
-						<label><input type="radio" name="gender" value="M">남자</label>
-						<label><input type="radio" name="gender" value="F">여자</label>
-					</td>
-				</tr>
-				<tr>
 					<td>나이</td>
 					<td>
 						<input type="number" name="age" placeholder="나이 입력"/>
 					</td>
 				</tr>
 				<tr>
-					<td>주소</td>
+					<td>이메일</td>
 					<td>
-						<input type="text" name="address" placeholder="주소 입력"/>
+						<input type="text" name="email" placeholder="이메일 주소 입력"/>
 					</td>
 				</tr>
 				<tr>

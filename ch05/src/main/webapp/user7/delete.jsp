@@ -4,7 +4,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// 요청 데이터 받기
-	String seq = request.getParameter("seq");
+	String id = request.getParameter("id");
 	
 	// 데이터베이스 접속 정보
 	String host = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -17,7 +17,7 @@
 		
 		Connection conn = DriverManager.getConnection(host, user, pass);
 		Statement stmt = conn.createStatement();
-		String sql = "delete from user6 where seq="+seq;
+		String sql = "delete from user7 where id="+id;
 		stmt.executeUpdate(sql);
 		
 		stmt.close();

@@ -4,11 +4,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	// 요청 데이터 가져오기
-	String seq = request.getParameter("seq");
+	String id = request.getParameter("id");
 	String name = request.getParameter("name");
-	String gender = request.getParameter("gender");
 	String age = request.getParameter("age");
-	String addr = request.getParameter("addr");
+	String email = request.getParameter("email");
 	
 	// 데이터베이스 접속 정보
 	String host = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -20,13 +19,12 @@
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		
 		Connection conn = DriverManager.getConnection(host, user, pass);
-		String sql = "update user6 set name=?, gender=?, age=?, addr=? where seq=?";
+		String sql = "update user7 set name=?, age=?, email=? where id=?";
 		PreparedStatement psmt = conn.prepareStatement(sql);
 		psmt.setString(1, name);
-		psmt.setString(2, gender);
-		psmt.setString(3, age);
-		psmt.setString(4, addr);
-		psmt.setString(5, seq);
+		psmt.setString(2, age);
+		psmt.setString(3, email);
+		psmt.setString(4, id);
 		
 		psmt.executeUpdate();
 		

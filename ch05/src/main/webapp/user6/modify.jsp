@@ -46,10 +46,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>user5::list</title>
+		<title>user6::list</title>
 	</head>
 	<body>
-		<h3>User5 수정</h3>
+		<h3>User6 수정</h3>
 		
 		<a href="../jdbc.jsp">처음으로</a>
 		<a href="./list.jsp">목록으로</a>
