@@ -3,31 +3,35 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Shop/Customer::modify</title>
+		<title>Shop/Product::modify</title>
 	</head>
 	<body>
-		<h3>Shop/Customer 수정</h3>
+		<h3>Shop/Product 수정</h3>
 		
-		<a href="/ch09">처음으로</a>
-		<a href="/ch09/shop/customer/list.do">목록이동</a>
+		<a href="/ch10">처음으로</a>
+		<a href="/ch10/shop/product/list.do">목록이동</a>
 		
-		<form action="/ch09/shop/customer/modify.do" method="post">
+		<form action="/ch10/shop/product/modify.do" method="post">
 			<table border="1">
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="user_id" readonly value="${user1DTO.user_id}" placeholder="아이디 입력"/></td>
+					<td><input type="number" name="pno" readonly value="${dto.pno}" placeholder="아이디 입력"/></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type="text" name="name" value="${user1DTO.name}" placeholder="이름 입력"/></td>
+					<td><input type="text" name="pname" value="${dto.pname}" placeholder="이름 입력"/></td>
 				</tr>
 				<tr>
 					<td>휴대폰</td>
-					<td><input type="text" name="hp" value="${user1DTO.hp}" placeholder="휴대폰 입력(- 포함)"/></td>
+					<td><input type="number" name="stock" value="${dto.stock}" placeholder="휴대폰 입력(- 포함)"/></td>
 				</tr>
 				<tr>
 					<td>나이</td>
-					<td><input type="number" name="age" value="${user1DTO.age}" placeholder="숫자 입력"/></td>
+					<td><input type="number" name="price" value="${dto.price}" placeholder="숫자 입력"/></td>
+				</tr>
+				<tr>
+					<td>나이</td>
+					<td><input type="text" name="company" value="${dto.company}" placeholder="숫자 입력"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">

@@ -14,24 +14,24 @@
 		<form action="/ch10/shop/customer/register.do" method="post">
 			<table border="1">
 				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="user_id" placeholder="아이디 입력"/></td>
+					<td>상품번호</td>
+					<td><input type="number" name="pno"/></td>
 				</tr>
 				<tr>
-					<td>이름</td>
-					<td><input type="text" name="name" placeholder="이름 입력"/></td>
+					<td>상품명</td>
+					<td><input type="text" name="pname" placeholder="상품명 입력"/></td>
 				</tr>
 				<tr>
-					<td>휴대폰</td>
-					<td><input type="text" name="hp" placeholder="휴대폰 입력(- 포함)"/></td>
+					<td>재고수량</td>
+					<td><input type="number" name="stock"/></td>
 				</tr>
 				<tr>
-					<td>주소</td>
-					<td><input type="text" name="address" placeholder="주소 입력"/></td>
+					<td>단가</td>
+					<td><input type="number" name="price"/></td>
 				</tr>
 				<tr>
-					<td>등록일</td>
-					<td><input type="date" name="rdate"/></td>
+					<td>제조업체</td>
+					<td><input type="text" name="company" placeholder="제조업체 입력"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">

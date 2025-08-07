@@ -4,33 +4,33 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>shop/customer::list</title>
+		<title>shop/product::list</title>
 	</head>
 	<body>
-		<h3>Shop/Customer 목록</h3>
+		<h3>Shop/Product 목록</h3>
 		
 		<a href="/ch10">처음으로</a>
-		<a href="/ch10/shop/customer/register.do">등록하기</a>
+		<a href="/ch10/shop/product/register.do">등록하기</a>
 		
 		<table border="1">
 			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>휴대폰</th>
-				<th>주소</th>
-				<th>등록일</th>
+				<th>상풍번호</th>
+				<th>상품명</th>
+				<th>재고량</th>
+				<th>단가</th>
+				<th>제조업체</th>
 				<th>관리</th>
 			</tr>
-			<c:forEach var="customer" items="${dtoList}">
+			<c:forEach var="product" items="${dtoList}">
 				<tr>
-					<td>${customer.getCid()}</td>
-					<td></td>
-					<td></td><!-- 표현언어에서 getter 호출 안하고 직접 속성 참조해서 출력 가능 -->
-					<td></td>
-					<td></td>
+					<td>${ product.getPno() }</td>
+					<td>${ product.getPname() }</td>
+					<td>${ product.getStock() }</td><!-- 표현언어에서 getter 호출 안하고 직접 속성 참조해서 출력 가능 -->
+					<td>${ product.getPrice() }</td>
+					<td>${ product.getCompany() }</td>
 					<td>
-						<a href="">수정</a>
-						<a href="">삭제</a>
+						<a href="/ch10/shop/product/modify.do?${ product.getPno() }">수정</a>
+						<a href="/ch10/shop/product/delete.do?${ product.getPno() }">삭제</a>
 					</td>
 				</tr>
 			</c:forEach>

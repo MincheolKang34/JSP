@@ -3,13 +3,14 @@ package controller.shop.product;
 import java.io.IOException;
 
 import dto.shop.ProductDTO;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.shop.ProductService;
 
-public class RegisterController extends HttpServlet{
+public class ModifyController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -17,16 +18,23 @@ public class RegisterController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect("/ch10/WEB-INF/views/shop/product/register.jsp");
+		String pno = req.getParameter("pno");
+		
+		ProductDTO dto = productService.findByPno(pno);
+		
+		req.setAttribute("dto", dto);
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/ch10/WEB-INF/views/shop/product/modify.jsp");
+		dispatcher.forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String pno = req.getParameter("pno");
-		String pname = req.getParameter("pname");
-		String stock = req.getParameter("stock");
-		String price = req.getParameter("price");
-		String company = req.getParameter("company");
+		String pno = getInitParameter("pno");
+		String pname = getInitParameter("pname");
+		String stock = getInitParameter("stock");
+		String price = getInitParameter("price");
+		String company = getInitParameter("company");
 		
 		ProductDTO dto = new ProductDTO();
 		dto.setPno(pno);
@@ -35,8 +43,9 @@ public class RegisterController extends HttpServlet{
 		dto.setPrice(price);
 		dto.setCompany(company);
 		
-		productService.register(dto);
+		productService.modify(dto);
 		
 		resp.sendRedirect("/ch10/WEB-INF/views/shop/product/list.jsp");
+		super.doPost(req, resp);
 	}
 }
