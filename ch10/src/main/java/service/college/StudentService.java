@@ -13,27 +13,19 @@ public enum StudentService {
 	
 	private StudentDAO dao = StudentDAO.getInstance();
 	
-	public void register(String stdNo) {
-		dao.insertStudent(stdNo);
+	public void register(StudentDTO dto) {
+		dao.insertStudent(dto);
 	}
-	public List<StudentDTO> findById() {
-		return dao.selectStudent();
+	public StudentDTO findById(String stdNo) {
+		return dao.selectStudent(stdNo);
 	}
-	public void findAll() {
-		
+	public List<StudentDTO> findAll() {
+		return dao.selectAllStudent();
 	}
-	public void modify() {
-		try {
-//			conn = getConnection(DBCP);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void modify(StudentDTO dto) {
+		dao.updateStudent(dto);
 	}
-	public void delete() {
-		try {
-//			conn = getConnection(DBCP);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void delete(String stdNo) {
+		dao.deleteStudent(stdNo);
 	}
 }

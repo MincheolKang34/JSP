@@ -15,27 +15,27 @@
 			<table border="1">
 				<tr>
 					<td>학번</td>
-					<td><input type="text" name="stdno" placeholder="아이디 입력"/></td>
+					<td><input type="text" name="stdNo" placeholder="학번 입력"/></td>
 				</tr>
 				<tr>
 					<td>이름</td>
 					<td><input type="text" name="name" placeholder="이름 입력"/></td>
 				</tr>
 				<tr>
-					<td>휴대폰</td>
-					<td><input type="date" name="birth" placeholder="휴대폰 입력(- 포함)"/></td>
+					<td>생년월일</td>
+					<td><input type="date" name="birth"/></td>
 				</tr>
 				<tr>
 					<td>전공</td>
 					<td>
 						<select name="major">
-							<option>국문학과</option>
-							<option>영문학과</option>
-							<option>일문학과</option>
-							<option>중문학과</option>
-							<option>컴공학과</option>
-							<option>통계학과</option>
-							<option>수학학과</option>
+							<option value="국문학과">국문학과</option>
+							<option value="영문학과">영문학과</option>
+							<option value="일문학과">일문학과</option>
+							<option value="중문학과">중문학과</option>
+							<option value="컴공학과">컴공학과</option>
+							<option value="통계학과">통계학과</option>
+							<option value="수학학과">수학학과</option>
 						</select>
 					</td>
 				</tr>
