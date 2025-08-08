@@ -11,24 +11,24 @@
 		<a href="/ch10">처음으로</a>
 		<a href="/ch10/college/student/list.do">목록이동</a>
 		
-		<form action="/ch10/college/student/modify.do" method="post">
+		<form action="/ch10/college/course/modify.do" method="post">
 			<table border="1">
 				<tr>
-					<td>학번</td>
-					<td><input type="text" name="stdNo" readonly value="${ dto.stdNo }"/></td>
+					<td>과목번호</td>
+					<td><input type="text" name="cs_id" readonly value="${ dto.cs_id }"/></td>
 				</tr>
 				<tr>
-					<td>이름</td>
-					<td><input type="text" name="name" value="${ dto.name }"/></td>
+					<td>과목이름</td>
+					<td><input type="text" name="cs_name" value="${ dto.cs_name }"/></td>
 				</tr>
 				<tr>
-					<td>생년월일</td>
-					<td><input type="date" name="birth" value="${ dto.birth }"/></td>
+					<td>학점</td>
+					<td><input type="number" name="cs_credit" value="${ dto.cs_credit }"/></td>
 				</tr>
 				<tr>
-					<td>전공</td>
+					<td>학과</td>
 					<td>
-						<select name="major">
+						<select name="cs_dept">
 							<option value="국문학과">국문학과</option>
 							<option value="영문학과">영문학과</option>
 							<option value="일문학과">일문학과</option>
@@ -38,10 +38,6 @@
 							<option value="수학학과">수학학과</option>
 						</select>
 					</td>
-				</tr>
-				<tr>
-					<td>입학일</td>
-					<td><input type="date" name="enr_date" value="${ dto.enr_date }"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">

@@ -11,8 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.college.CourseService;
 
-@WebServlet("/college/course/register.do")
-public class RegisterController extends HttpServlet {
+@WebServlet("/college/course/modify.do")
+public class ModifyController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -20,7 +20,13 @@ public class RegisterController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/college/course/register.jsp");
+		String cs_id = req.getParameter("cs_id");
+		
+		CourseDTO dto = service.findByCs_id(cs_id);
+		
+		req.setAttribute("dto", dto);
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/college/course/modify.jsp");
 		dispatcher.forward(req, resp);
 	}
 
@@ -37,7 +43,7 @@ public class RegisterController extends HttpServlet {
 		dto.setCs_credit(cs_credit);
 		dto.setCs_dept(cs_dept);
 		
-		service.register(dto);
+		service.modify(dto);
 		
 		resp.sendRedirect("/ch10/college/course/list.do");
 	}

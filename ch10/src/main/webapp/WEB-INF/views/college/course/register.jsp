@@ -3,32 +3,32 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>College/Student::modify</title>
+		<title>College/Course::list</title>
 	</head>
 	<body>
-		<h3>College/Student 수정</h3>
+		<h3>College/Course 등록</h3>
 		
 		<a href="/ch10">처음으로</a>
-		<a href="/ch10/college/student/list.do">목록이동</a>
+		<a href="/ch10/college/course/register.do">등록하기</a>
 		
-		<form action="/ch10/college/student/modify.do" method="post">
+		<form action="/ch10/college/course/register.do" method="post">
 			<table border="1">
 				<tr>
-					<td>학번</td>
-					<td><input type="text" name="stdNo" readonly value="${ dto.stdNo }"/></td>
+					<td>과목번호</td>
+					<td><input type="text" name="cs_id" placeholder="과목번호 입력"/></td>
 				</tr>
 				<tr>
-					<td>이름</td>
-					<td><input type="text" name="name" value="${ dto.name }"/></td>
+					<td>과목이름</td>
+					<td><input type="text" name="cs_name" placeholder="과목이름 입력"/></td>
 				</tr>
 				<tr>
-					<td>생년월일</td>
-					<td><input type="date" name="birth" value="${ dto.birth }"/></td>
+					<td>학점</td>
+					<td><input type="number" name="cs_credit"/></td>
 				</tr>
 				<tr>
-					<td>전공</td>
+					<td>학과</td>
 					<td>
-						<select name="major">
+						<select name="cs_dept">
 							<option value="국문학과">국문학과</option>
 							<option value="영문학과">영문학과</option>
 							<option value="일문학과">일문학과</option>
@@ -40,12 +40,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>입학일</td>
-					<td><input type="date" name="enr_date" value="${ dto.enr_date }"/></td>
-				</tr>
-				<tr>
 					<td colspan="2" align="right">
-						<input type="submit" value="수정하기"/>
+						<input type="submit" value="등록하기"/>
 					</td>
 				</tr>
 			</table>
