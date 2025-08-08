@@ -14,19 +14,19 @@
 		<form action="/ch10/college/course/register.do" method="post">
 			<table border="1">
 				<tr>
-					<td>과목번호</td>
-					<td><input type="text" name="cs_id" placeholder="과목번호 입력"/></td>
+					<td>강좌번호</td>
+					<td><input type="text" name="cs_id" placeholder="강좌번호 입력"/></td>
 				</tr>
 				<tr>
-					<td>과목이름</td>
-					<td><input type="text" name="cs_name" placeholder="과목이름 입력"/></td>
+					<td>강좌명</td>
+					<td><input type="text" name="cs_name" placeholder="강좌명 입력"/></td>
 				</tr>
 				<tr>
-					<td>학점</td>
+					<td>취득학점</td>
 					<td><input type="number" name="cs_credit"/></td>
 				</tr>
 				<tr>
-					<td>학과</td>
+					<td>개설학과</td>
 					<td>
 						<select name="cs_dept">
 							<option value="국문학과">국문학과</option>

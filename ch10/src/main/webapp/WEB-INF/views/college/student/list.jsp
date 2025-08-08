@@ -14,8 +14,8 @@
 		
 		<table border="1">
 			<tr>
-				<th>학번</th>
-				<th>이름</th>
+				<th>학생번호</th>
+				<th>학생명</th>
 				<th>생년월일</th>
 				<th>전공</th>
 				<th>입학일</th>

@@ -14,10 +14,10 @@
 		
 		<table border="1">
 			<tr>
-				<th>과목번호</th>
-				<th>과목이름</th>
-				<th>학점</th>
-				<th>학과</th>
+				<th>강좌번호</th>
+				<th>강좌명</th>
+				<th>취득학점</th>
+				<th>개설학과</th>
 				<th>관리</th>
 			</tr>
 			<c:forEach var="course" items="${ dtoList }">

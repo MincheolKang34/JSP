@@ -14,15 +14,15 @@
 		<form action="/ch10/college/course/modify.do" method="post">
 			<table border="1">
 				<tr>
-					<td>과목번호</td>
+					<td>강좌번호</td>
 					<td><input type="text" name="cs_id" readonly value="${ dto.cs_id }"/></td>
 				</tr>
 				<tr>
-					<td>과목이름</td>
+					<td>강좌이름</td>
 					<td><input type="text" name="cs_name" value="${ dto.cs_name }"/></td>
 				</tr>
 				<tr>
-					<td>학점</td>
+					<td>취득학점</td>
 					<td><input type="number" name="cs_credit" value="${ dto.cs_credit }"/></td>
 				</tr>
 				<tr>

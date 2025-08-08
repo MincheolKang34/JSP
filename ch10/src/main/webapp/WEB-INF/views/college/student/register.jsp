@@ -14,11 +14,11 @@
 		<form action="/ch10/college/student/register.do" method="post">
 			<table border="1">
 				<tr>
-					<td>학번</td>
+					<td>학생번호</td>
 					<td><input type="text" name="stdNo" placeholder="학번 입력"/></td>
 				</tr>
 				<tr>
-					<td>이름</td>
+					<td>학생명</td>
 					<td><input type="text" name="name" placeholder="이름 입력"/></td>
 				</tr>
 				<tr>
