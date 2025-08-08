@@ -29,8 +29,8 @@
 					<td>${ product.getPrice() }</td>
 					<td>${ product.getCompany() }</td>
 					<td>
-						<a href="/ch10/shop/product/modify.do?${ product.getPno() }">수정</a>
-						<a href="/ch10/shop/product/delete.do?${ product.getPno() }">삭제</a>
+						<a href="/ch10/shop/product/modify.do?pno=${ product.getPno() }">수정</a>
+						<a href="/ch10/shop/product/delete.do?pno=${ product.getPno() }">삭제</a>
 					</td>
 				</tr>
 			</c:forEach>

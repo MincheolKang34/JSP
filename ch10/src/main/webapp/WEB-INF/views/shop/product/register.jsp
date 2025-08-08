@@ -3,15 +3,15 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Shop/Customer::list</title>
+		<title>Shop/Product::list</title>
 	</head>
 	<body>
-		<h3>Shop/Customer 등록</h3>
+		<h3>Shop/Product 등록</h3>
 		
 		<a href="/ch10">처음으로</a>
-		<a href="/ch10/shop/customer/register.do">등록하기</a>
+		<a href="/ch10/shop/product/register.do">등록하기</a>
 		
-		<form action="/ch10/shop/customer/register.do" method="post">
+		<form action="/ch10/shop/product/register.do" method="post">
 			<table border="1">
 				<tr>
 					<td>상품번호</td>

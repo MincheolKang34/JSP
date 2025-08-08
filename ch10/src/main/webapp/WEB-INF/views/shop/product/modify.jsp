@@ -14,24 +14,24 @@
 		<form action="/ch10/shop/product/modify.do" method="post">
 			<table border="1">
 				<tr>
-					<td>아이디</td>
-					<td><input type="number" name="pno" readonly value="${dto.pno}" placeholder="아이디 입력"/></td>
+					<td>상품번호</td>
+					<td><input type="number" name="pno" readonly value="${dto.pno}"/></td>
 				</tr>
 				<tr>
-					<td>이름</td>
-					<td><input type="text" name="pname" value="${dto.pname}" placeholder="이름 입력"/></td>
+					<td>상품명</td>
+					<td><input type="text" name="pname" value="${dto.pname}"/></td>
 				</tr>
 				<tr>
-					<td>휴대폰</td>
-					<td><input type="number" name="stock" value="${dto.stock}" placeholder="휴대폰 입력(- 포함)"/></td>
+					<td>재고량</td>
+					<td><input type="number" name="stock" value="${dto.stock}"/></td>
 				</tr>
 				<tr>
-					<td>나이</td>
-					<td><input type="number" name="price" value="${dto.price}" placeholder="숫자 입력"/></td>
+					<td>단가</td>
+					<td><input type="number" name="price" value="${dto.price}"/></td>
 				</tr>
 				<tr>
-					<td>나이</td>
-					<td><input type="text" name="company" value="${dto.company}" placeholder="숫자 입력"/></td>
+					<td>제조업체</td>
+					<td><input type="text" name="company" value="${dto.company}"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">

@@ -3,12 +3,15 @@ package controller.shop.product;
 import java.io.IOException;
 
 import dto.shop.ProductDTO;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.shop.ProductService;
 
+@WebServlet("/shop/product/register.do")
 public class RegisterController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
@@ -17,7 +20,8 @@ public class RegisterController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect("/ch10/WEB-INF/views/shop/product/register.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/shop/product/register.jsp");
+		dispatcher.forward(req, resp);
 	}
 
 	@Override
@@ -37,6 +41,6 @@ public class RegisterController extends HttpServlet{
 		
 		productService.register(dto);
 		
-		resp.sendRedirect("/ch10/WEB-INF/views/shop/product/list.jsp");
+		resp.sendRedirect("/ch10/shop/product/list.do");
 	}
 }

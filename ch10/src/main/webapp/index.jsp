@@ -47,5 +47,12 @@
 		<a href="/ch10/college/member/list.do">Member CRUD</a>
 		<a href="/ch10/college/book/list.do">Book CRUD</a>
 		
+		<h4>User(MySQL)</h4>
+		<a href="/ch10/user1/list.do">user1 CRUD</a><br/>
+		<a href="/ch10/user2/list.do">user2 CRUD</a><br/>
+		<a href="/ch10/user3/list.do">user3 CRUD</a><br/>
+		<a href="/ch10/user4/list.do">user4 CRUD</a><br/>
+		<a href="/ch10/user5/list.do">user5 CRUD</a><br/>
+		
 	</body>
 </html>

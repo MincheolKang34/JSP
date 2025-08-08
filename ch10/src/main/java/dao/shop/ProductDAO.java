@@ -36,7 +36,29 @@ public class ProductDAO extends DBHelper{
 		}
 	}
 	public ProductDTO selectProduct(String pno) {
-		return null;
+		
+		ProductDTO dto = null;
+		
+		try {
+			conn = getConnection(DBCP);
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM PRODUCT WHERE pno="+pno;
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				dto = new ProductDTO();
+				dto.setPno(rs.getInt(1));
+				dto.setPname(rs.getString(2));
+				dto.setStock(rs.getInt(3));
+				dto.setPrice(rs.getInt(4));
+				dto.setCompany(rs.getString(5));
+			}
+			
+			closeAll();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 	public List<ProductDTO> selectAllProduct() {
 		
@@ -87,6 +109,15 @@ public class ProductDAO extends DBHelper{
 		}
 	}
 	public void deleteProduct(String pno) {
-		
+		try {
+			conn = getConnection(DBCP);
+			stmt = conn.createStatement();
+			String sql = "DELETE FROM PRODUCT WHERE pno="+pno;
+			stmt.executeUpdate(sql);
+			
+			closeAll();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
