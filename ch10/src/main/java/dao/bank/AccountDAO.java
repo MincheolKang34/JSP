@@ -90,10 +90,36 @@ public class AccountDAO extends DBHelper {
 	}
 	
 	public void updateAccount(AccountDTO dto) {
+		try {
+			conn = getConnection(DBCP);
+			String sql = "UPDATE ACCOUNT SET acc_type=?, acc_name=?, acc_cid=?, acc_balance=?, acc_date=? WHERE acc_no=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getAcc_type());
+			psmt.setString(2, dto.getAcc_name());
+			psmt.setString(3, dto.getAcc_cid());
+			psmt.setInt(4, dto.getAcc_balance());
+			psmt.setString(5, dto.getAcc_date());
+			psmt.setString(6, dto.getAcc_no());
+			
+			psmt.executeUpdate();
+			
+			closeAll();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
 	public void deleteAccount(String acc_no) {
-		
+		try {
+			conn = getConnection(DBCP);
+			stmt = conn.createStatement();
+			String sql = "DELETE FROM ACCOUNT WHERE acc_no='"+acc_no+"'";
+			stmt.executeUpdate(sql);
+			
+			closeAll();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

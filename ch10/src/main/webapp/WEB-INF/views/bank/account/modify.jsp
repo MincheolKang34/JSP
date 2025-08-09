@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,7 +16,7 @@
 			<table border="1">
 				<tr>
 					<td>계좌번호</td>
-					<td><input type="text" name="acc_no" readonly value="${ dto.acc_no })"/></td>
+					<td><input type="text" name="acc_no" readonly value="${ dto.acc_no }"/></td>
 				</tr>
 				<tr>
 					<td>상품구분</td>
@@ -43,15 +44,15 @@
 				</tr>
 				<tr>
 					<td>고객번호</td>
-					<td><input type="text" name="acc_cid"/></td>
+					<td><input type="text" name="acc_cid" value="${ dto.acc_cid }"/></td>
 				</tr>
 				<tr>
 					<td>현재잔액</td>
-					<td><input type="number" name="acc_balance"/></td>
+					<td><input type="number" name="acc_balance" value="${ dto.acc_balance }"/></td>
 				</tr>
 				<tr>
 					<td>개설일</td>
-					<td><input type="date" name="acc_date"/></td>
+					<td><input type="date" name="acc_date" value="${ fn:substring(dto.acc_date, 0, 10) }"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">

@@ -1,4 +1,4 @@
-package controller.bank;
+package controller.bank.account;
 
 import java.io.IOException;
 
@@ -9,10 +9,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.AccountService;
+import service.shop.bank.AccountService;
 
-@WebServlet("/bank/account/modify.do")
-public class ModifyController extends HttpServlet {
+@WebServlet("/bank/account/register.do")
+public class RegisterController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,13 +20,7 @@ public class ModifyController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String acc_no = req.getParameter("acc_no");
-		
-		AccountDTO dto = service.findByAcc_no(acc_no);
-		
-		req.setAttribute("dto", dto);
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/bank/account/modify.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/bank/account/register.jsp");
 		dispatcher.forward(req, resp);
 	}
 
@@ -47,7 +41,7 @@ public class ModifyController extends HttpServlet {
 		dto.setAcc_balance(acc_balance);
 		dto.setAcc_date(acc_date);
 		
-		service.modify(dto);
+		service.register(dto);
 		
 		resp.sendRedirect("/ch10/bank/account/list.do");
 	}

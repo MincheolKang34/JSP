@@ -1,4 +1,4 @@
-package controller.bank;
+package controller.bank.account;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.AccountService;
+import service.shop.bank.AccountService;
 
 @WebServlet("/bank/account/list.do")
 public class ListController extends HttpServlet {
