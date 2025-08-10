@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.shop.bank.CustomerService;
+import service.bank.CustomerService;
 
 @WebServlet("/bank/customer/modify.do")
 public class ModifyController extends HttpServlet {

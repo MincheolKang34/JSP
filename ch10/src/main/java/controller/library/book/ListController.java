@@ -1,28 +1,32 @@
-package controller.bank.account;
+package controller.library.book;
 
 import java.io.IOException;
+import java.util.List;
 
+import dto.library.BookDTO;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.bank.AccountService;
+import service.library.BookService;
 
-@WebServlet("/bank/account/delete.do")
-public class DeleteController extends HttpServlet {
+@WebServlet("/library/book/list.do")
+public class ListController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private AccountService service = AccountService.INSTANCE;
-	
+	private BookService service = BookService.INSTANCE;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String acc_no = req.getParameter("acc_no");
-
-		service.delete(acc_no);
+		List<BookDTO> dtoList = service.findAll();
 		
-		resp.sendRedirect("/ch10/bank/account/list.do");
+		req.setAttribute("dtoList", dtoList);
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/library/book/list.jsp");
+		dispatcher.forward(req, resp);
 	}
 
 	@Override

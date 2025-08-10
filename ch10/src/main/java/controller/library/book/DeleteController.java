@@ -1,4 +1,4 @@
-package controller.bank.account;
+package controller.library.book;
 
 import java.io.IOException;
 
@@ -7,22 +7,22 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.bank.AccountService;
+import service.library.BookService;
 
-@WebServlet("/bank/account/delete.do")
+@WebServlet("/library/book/delete.do")
 public class DeleteController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private AccountService service = AccountService.INSTANCE;
-	
+	private BookService service = BookService.INSTANCE;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String acc_no = req.getParameter("acc_no");
-
-		service.delete(acc_no);
+		String book_id = req.getParameter("book_id");
 		
-		resp.sendRedirect("/ch10/bank/account/list.do");
+		service.delete(book_id);
+		
+		resp.sendRedirect("/ch10/library/book/list.do");
 	}
 
 	@Override

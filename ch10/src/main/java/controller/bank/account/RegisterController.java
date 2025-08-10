@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.shop.bank.AccountService;
+import service.bank.AccountService;
 
 @WebServlet("/bank/account/register.do")
 public class RegisterController extends HttpServlet {

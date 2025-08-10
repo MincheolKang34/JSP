@@ -44,8 +44,8 @@
 		<a href="/ch10/bank/customer/list.do">Customer CRUD</a>
 		
 		<h4>Library</h4>
-		<a href="/ch10/college/member/list.do">Member CRUD</a>
-		<a href="/ch10/college/book/list.do">Book CRUD</a>
+		<a href="/ch10/library/member/list.do">Member CRUD</a>
+		<a href="/ch10/library/book/list.do">Book CRUD</a>
 		
 		<h4>User(MySQL)</h4>
 		<a href="/ch10/user1/list.do">user1 CRUD</a><br/>

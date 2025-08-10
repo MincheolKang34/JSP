@@ -1,4 +1,4 @@
-package service.shop.bank;
+package service.bank;
 
 import java.util.List;
 
