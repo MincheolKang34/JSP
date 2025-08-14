@@ -15,7 +15,7 @@
 			<table border="1">
 				<tr>
 					<td>학번</td>
-					<td><input type="text" name="stdNo" placeholder="아이디 입력"/></td>
+					<td><input type="text" name="stdNo" placeholder="학번 입력"/></td>
 				</tr>
 				<tr>
 					<td>이름</td>

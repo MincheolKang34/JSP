@@ -26,7 +26,11 @@ public class DeleteController extends HttpServlet {
 		
 		String regLecNo = req.getParameter("regLecNo");
 		
-		service.delete(regStdNo, Integer.parseInt(regLecNo));
+		int regLecNoInt = 0;
+		if(regLecNo != null) 
+			regLecNoInt = Integer.parseInt(regLecNo);
+		
+		service.delete(regStdNo, regLecNoInt);
 		
 		resp.sendRedirect("/ErdCollege/register/list.do");
 	}	
