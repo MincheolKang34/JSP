@@ -11,11 +11,11 @@ public enum RegisterService {
 	
 	private RegisterDAO dao = RegisterDAO.getInstance();
 	
-	public RegisterDTO select(int regStdNo, int regLecNo) {
+	public RegisterDTO select(String regStdNo, int regLecNo) {
 		return dao.select(regStdNo, regLecNo);
 	}
-	public List<RegisterDTO> selectAll() {
-		return dao.selectAll();
+	public List<RegisterDTO> selectAll(String regStdNo) {
+		return dao.selectAll(regStdNo);
 	}
 	public void insert(RegisterDTO dto) {
 		dao.insert(dto);
@@ -23,7 +23,7 @@ public enum RegisterService {
 	public void update(RegisterDTO dto) {
 		dao.update(dto);
 	}
-	public void delete(int regStdNo, int regLecNo) {
+	public void delete(String regStdNo, int regLecNo) {
 		dao.delete(regStdNo, regLecNo);
 	}
 }

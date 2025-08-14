@@ -9,29 +9,29 @@
 		<h3>학생등록</h3>
 		
 		<a href="/ErdCollege">처음으로</a>
-		<a href="/ErdCollege/student/register.do">등록하기</a>
+		<a href="/ErdCollege/student/list.do">목록이동</a>
 		
 		<form action="/ErdCollege/student/register.do" method="post">
 			<table border="1">
 				<tr>
-					<td>아이디</td>
-					<td><input type="text" name="custid" placeholder="아이디 입력"/></td>
+					<td>학번</td>
+					<td><input type="text" name="stdNo" placeholder="아이디 입력"/></td>
 				</tr>
 				<tr>
 					<td>이름</td>
-					<td><input type="text" name="name" placeholder="이름 입력"/></td>
+					<td><input type="text" name="stdName" placeholder="이름 입력"/></td>
 				</tr>
 				<tr>
 					<td>휴대폰</td>
-					<td><input type="text" name="hp" placeholder="휴대폰 입력(- 포함)"/></td>
+					<td><input type="text" name="stdHp" placeholder="휴대폰 입력(- 포함)"/></td>
+				</tr>
+				<tr>
+					<td>학년</td>
+					<td><input type="number" name="stdYear" placeholder="학년 입력"/></td>
 				</tr>
 				<tr>
 					<td>주소</td>
-					<td><input type="text" name="addr" placeholder="주소 입력"/></td>
-				</tr>
-				<tr>
-					<td>등록일</td>
-					<td><input type="date" name="rdate"/></td>
+					<td><input type="text" name="stdAddress" placeholder="주소 입력"/></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">

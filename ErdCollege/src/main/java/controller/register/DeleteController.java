@@ -1,34 +1,35 @@
-package controller.student;
+package controller.register;
 
 import java.io.IOException;
-import java.util.List;
 
 import dto.StudentDTO;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.StudentService;
+import jakarta.servlet.http.HttpSession;
+import service.RegisterService;
 
-@WebServlet("/student/list.do")
-public class ListController extends HttpServlet {
+@WebServlet("/register/delete.do")
+public class DeleteController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-
-	private StudentService service = StudentService.INSTANCE;
 	
+	private RegisterService service = RegisterService.INSTANCE;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		List<StudentDTO> dtoList = service.selectAll();
+		HttpSession session = req.getSession();
+		StudentDTO sessStudent = (StudentDTO) session.getAttribute("sessStudent");
+		String regStdNo = sessStudent.getStdNo();
 		
-		req.setAttribute("dtoList", dtoList);
+		String regLecNo = req.getParameter("regLecNo");
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/student/list.jsp");
-		dispatcher.forward(req, resp);
-	}
+		service.delete(regStdNo, Integer.parseInt(regLecNo));
+		
+		resp.sendRedirect("/ErdCollege/register/list.do");
+	}	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

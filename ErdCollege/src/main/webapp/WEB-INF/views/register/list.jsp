@@ -13,23 +13,25 @@
 		
 		<table border="1">
 			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>휴대폰</th>
-				<th>주소</th>
-				<th>등록일</th>
+				<th>학번</th>
+				<th>강좌번호</th>
+				<th>중간점수</th>
+				<th>기말점수</th>
+				<th>총합점수</th>
+				<th>등급</th>
 				<th>관리</th>
 			</tr>
-			<c:forEach var="lecture" items="${ dtoList }">
+			<c:forEach var="register" items="${ dtoList }">
 				<tr>
-					<td>${ lecture.custid }</td>
-					<td>${ lecture.name }</td>
-					<td>${ lecture.hp }</td>
-					<td>${ lecture.addr }</td>
-					<td>${ lecture.rdate }</td>
+					<td>${ register.regStdNo }</td>
+					<td>${ register.regLecNo }</td>
+					<td>${ register.regMidScore }</td>
+					<td>${ register.regFinalScore }</td>
+					<td>${ register.regTotalScore }</td>
+					<td>${ register.regGrade }</td>
 					<td>
-						<a href="/ErdCollege/lecture/modify.do?">수정</a>
-						<a href="/ErdCollege/lecture/delete.do?">삭제</a>
+						<a href="/ErdCollege/register/modify.do?regLecNo=${ register.regLecNo }">수정</a>
+						<a href="/ErdCollege/register/delete.do?regLecNo=${ register.regLecNo }">삭제</a>
 					</td>
 				</tr>
 			</c:forEach>

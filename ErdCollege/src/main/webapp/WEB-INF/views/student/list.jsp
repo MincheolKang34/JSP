@@ -14,20 +14,20 @@
 		
 		<table border="1">
 			<tr>
-				<th>아이디</th>
+				<th>학번</th>
 				<th>이름</th>
 				<th>휴대폰</th>
+				<th>학년</th>
 				<th>주소</th>
-				<th>등록일</th>
 				<th>관리</th>
 			</tr>
 			<c:forEach var="student" items="${ dtoList }">
 				<tr>
-					<td>${ student.custid }</td>
-					<td>${ student.name }</td>
-					<td>${ student.hp }</td>
-					<td>${ student.addr }</td>
-					<td>${ student.rdate }</td>
+					<td>${ student.stdNo }</td>
+					<td>${ student.stdName }</td>
+					<td>${ student.stdHp }</td>
+					<td>${ student.stdYear }</td>
+					<td>${ student.stdAddress }</td>
 					<td>
 						<a href="/ErdCollege/student/modify.do?">수정</a>
 						<a href="/ErdCollege/student/delete.do?">삭제</a>

@@ -14,11 +14,11 @@
 		
 		<table border="1">
 			<tr>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>휴대폰</th>
-				<th>주소</th>
-				<th>등록일</th>
+				<th>강좌번호</th>
+				<th>강좌명</th>
+				<th>수강학점</th>
+				<th>수강시간</th>
+				<th>강의실</th>
 				<th>관리</th>
 			</tr>
 			<c:forEach var="dto" items="${ dtoList }">
@@ -29,8 +29,7 @@
 					<td>${ dto.lecTime}</td>
 					<td>${ dto.lecClass }</td>
 					<td>
-						<a href="ErdCollege/lecture/modify.do?">수정</a>
-						<a href="ErdCollege/lecture/delete.do?">삭제</a>
+						<a href="/ErdCollege/register/request.do?lecNo=${ dto.lecNo }">수강신청</a>
 					</td>
 				</tr>
 			</c:forEach>

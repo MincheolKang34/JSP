@@ -2,18 +2,22 @@ package controller.student;
 
 import java.io.IOException;
 
+import dto.StudentDTO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import service.StudentService;
 
 @WebServlet("/student/register.do")
 public class RegisterController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	private StudentService service = StudentService.INSTANCE;
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -23,7 +27,21 @@ public class RegisterController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		String stdNo = req.getParameter("stdNo");
+		String stdName = req.getParameter("stdName");
+		String stdHp = req.getParameter("stdHp");
+		String stdYear = req.getParameter("stdYear");
+		String stdAddress = req.getParameter("stdAddress");
+		
+		StudentDTO dto = new StudentDTO();
+		dto.setStdNo(stdNo);
+		dto.setStdName(stdName);
+		dto.setStdHp(stdHp);
+		dto.setStdYear(stdYear);
+		dto.setStdAddress(stdAddress);
+		
+		service.insert(dto);
+		
+		resp.sendRedirect("/ErdCollege/student/list.do");
 	}
 }
