@@ -15,6 +15,9 @@ public class Sql {
 																+ "from bank_account a " // <-- 마지막 띄어쓰기
 																+ "join bank_customer c on a.a_c_no=c.c_no";
 	
+	public static final String UPDATE_ACCOUNT_PLUS = "UPDATE BANK_ACCOUNT SET A_BALANCE = A_BALANCE + ? WHERE A_NO=?";
+	public static final String UPDATE_ACCOUNT_MINUS = "UPDATE BANK_ACCOUNT SET A_BALANCE = A_BALANCE - ? WHERE A_NO=?";
+	
 	// transaction
-	public final static String INSERT_TRANSACTION = "INSERT INTO TRANSACTION (T_A_NO, T_DIST, T_AMOUNT, T_DATETIME) VALUES (?,?,?,SYSDATE)";
+	public final static String INSERT_TRANSACTION = "INSERT INTO BANK_TRANSACTION (T_A_NO, T_DIST, T_AMOUNT, T_DATETIME) VALUES (?,?,?,SYSDATE)";
 }

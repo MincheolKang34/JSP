@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import dto.AccountDTO;
 import dto.CustomerDTO;
+import dto.TransactionDTO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import service.AccountService;
 import service.CustomerService;
+import service.TransactionService;
 
 @WebServlet("/account/transfer.do")
 public class TransferController extends HttpServlet {
@@ -21,6 +23,7 @@ public class TransferController extends HttpServlet {
 
 	private AccountService service = AccountService.INSTANCE;
 	private CustomerService service2 = CustomerService.INSTANCE;
+	private TransactionService transactionService = TransactionService.INSTANCE;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,7 +47,20 @@ public class TransferController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String a_no_from = req.getParameter("a_no_from");
 		String a_no_to = req.getParameter("a_no_to");
-		String a_amount = req.getParameter("a_amount");
+		String t_amount = req.getParameter("t_amount");
 		String c_name = req.getParameter("c_name");
+		
+		// 서비스 요청 DTO
+		TransactionDTO dto = new TransactionDTO();
+		dto.setT_a_no(a_no_from);
+		dto.setT_a_no_to(a_no_to);
+		dto.setT_amount(t_amount);
+		dto.setT_dist(3);
+		
+		// 서비스 요청
+		transactionService.transfer(dto);
+		
+		// 이동
+		resp.sendRedirect("/ErdBank/account/list.do?transfer=done");
 	}
 }

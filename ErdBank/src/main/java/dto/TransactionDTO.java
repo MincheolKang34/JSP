@@ -3,10 +3,21 @@ package dto;
 public class TransactionDTO {
 
 	private int t_no;
-	private String t_a_no;
+	private String t_a_no; // 내 계좌번호
 	private int t_dist;
 	private int t_amount;
 	private String t_datetime;
+	
+	// 추가필드
+	private String t_a_no_to;
+	
+	public String getT_a_no_to() {
+		return t_a_no_to;
+	}
+	public void setT_a_no_to(String t_a_no_to) {
+		this.t_a_no_to = t_a_no_to;
+	}
+	
 	public int getT_no() {
 		return t_no;
 	}

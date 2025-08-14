@@ -11,8 +11,8 @@ public enum TransactionService {
 	
 	private TransactionDAO dao = TransactionDAO.getInstance();
 
-	public void register(TransactionDTO dto) {
-		dao.insert(dto);
+	public void transfer(TransactionDTO dto) {
+		dao.insertAndUpdate(dto);
 	}
 	public TransactionDTO find(String t_no) {
 		return dao.select(t_no);
