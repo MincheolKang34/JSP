@@ -21,13 +21,13 @@
 				<th>등록일</th>
 				<th>관리</th>
 			</tr>
-			<c:forEach var="lecture" items="${ dtoList }">
+			<c:forEach var="dto" items="${ dtoList }">
 				<tr>
-					<td>${ lecture.custid }</td>
-					<td>${ lecture.name }</td>
-					<td>${ lecture.hp }</td>
-					<td>${ lecture.addr }</td>
-					<td>${ lecture.rdate }</td>
+					<td>${ dto.lecNo }</td>
+					<td>${ dto.lecName }</td>
+					<td>${ dto.lecCredit }</td>
+					<td>${ dto.lecTime}</td>
+					<td>${ dto.lecClass }</td>
 					<td>
 						<a href="ErdCollege/lecture/modify.do?">수정</a>
 						<a href="ErdCollege/lecture/delete.do?">삭제</a>

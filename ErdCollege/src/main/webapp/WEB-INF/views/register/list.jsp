@@ -20,16 +20,16 @@
 				<th>등록일</th>
 				<th>관리</th>
 			</tr>
-			<c:forEach var="customer" items="${ dtoList }">
+			<c:forEach var="lecture" items="${ dtoList }">
 				<tr>
-					<td>${ customer.custid }</td>
-					<td>${ customer.name }</td>
-					<td>${ customer.hp }</td>
-					<td>${ customer.addr }</td>
-					<td>${ customer.rdate }</td>
+					<td>${ lecture.custid }</td>
+					<td>${ lecture.name }</td>
+					<td>${ lecture.hp }</td>
+					<td>${ lecture.addr }</td>
+					<td>${ lecture.rdate }</td>
 					<td>
-						<a href="/shopApp/customer/modify.do?">수정</a>
-						<a href="/shopApp/customer/delete.do?">삭제</a>
+						<a href="/ErdCollege/lecture/modify.do?">수정</a>
+						<a href="/ErdCollege/lecture/delete.do?">삭제</a>
 					</td>
 				</tr>
 			</c:forEach>
