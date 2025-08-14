@@ -14,6 +14,10 @@ public class LectureDTO {
 	public void setLecNo(int lecNo) {
 		this.lecNo = lecNo;
 	}
+	public void setLecNo(String lecNo) {
+		if(lecNo != null)
+			this.lecNo = Integer.parseInt(lecNo);
+	}
 	public String getLecName() {
 		return lecName;
 	}
@@ -26,11 +30,19 @@ public class LectureDTO {
 	public void setLecCredit(int lecCredit) {
 		this.lecCredit = lecCredit;
 	}
+	public void setLecCredit(String lecCredit) {
+		if(lecCredit != null)
+			this.lecCredit = Integer.parseInt(lecCredit);
+	}
 	public int getLecTime() {
 		return lecTime;
 	}
 	public void setLecTime(int lecTime) {
 		this.lecTime = lecTime;
+	}
+	public void setLecTime(String lecTime) {
+		if(lecTime != null)
+			this.lecTime = Integer.parseInt(lecTime);
 	}
 	public String getLecClass() {
 		return lecClass;

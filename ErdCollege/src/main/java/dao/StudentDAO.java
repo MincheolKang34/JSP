@@ -17,6 +17,32 @@ public class StudentDAO extends DBHelper {
 	public StudentDTO select(String stdNo) {
 		return null;
 	}
+	public StudentDTO select(String stdNo, String stdName) {
+		
+		StudentDTO dto = null;
+		
+		try {
+			conn = getConnection();
+			String sql = "SELECT * FROM STUDENT WHERE stdNo=? AND stdName=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, stdNo);
+			psmt.setString(2, stdName);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new StudentDTO();
+				dto.setStdNo(rs.getString(1));
+				dto.setStdName(rs.getString(2));
+				dto.setStdHp(rs.getString(3));
+				dto.setStdYear(rs.getInt(4));
+				dto.setStdAddress(rs.getString(5));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
 	public List<StudentDTO> selectAll() {
 		
 		return null;

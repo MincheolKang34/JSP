@@ -41,7 +41,21 @@ public class LectureDAO extends DBHelper {
 		return dtoList;
 	}
 	public void insert(LectureDTO dto) {
-		
+		try {
+			conn = getConnection();
+			String sql = "INSERT INTO LECTURE VALUES (?,?,?,?,?)";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, dto.getLecNo());
+			psmt.setString(2, dto.getLecName());
+			psmt.setInt(3, dto.getLecCredit());
+			psmt.setInt(4, dto.getLecTime());
+			psmt.setString(5, dto.getLecClass());
+			psmt.executeUpdate();
+			
+			closeAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	public void update(LectureDTO dto) {
 		
