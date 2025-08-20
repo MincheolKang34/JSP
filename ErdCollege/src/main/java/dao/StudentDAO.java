@@ -16,7 +16,29 @@ public class StudentDAO extends DBHelper {
 	
 	// 기본 CRUD
 	public StudentDTO select(String stdNo) {
-		return null;
+		
+		StudentDTO dto = null;
+		
+		try {
+			conn = getConnection();
+			String sql = "SELECT * FROM STUDENT WHERE stdNo=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, stdNo);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new StudentDTO();
+				dto.setStdNo(rs.getString(1));
+				dto.setStdName(rs.getString(2));
+				dto.setStdHp(rs.getString(3));
+				dto.setStdYear(rs.getInt(4));
+				dto.setStdAddress(rs.getString(5));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 	public StudentDTO select(String stdNo, String stdName) {
 		
@@ -85,7 +107,22 @@ public class StudentDAO extends DBHelper {
 		}
 	}
 	public void update(StudentDTO dto) {
-		
+		try {
+			conn = getConnection();
+			String sql = "UPDATE STUDENT SET stdName=?, stdHp=?, stdYear=?, stdAddress=? WHERE stdNo=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getStdName());
+			psmt.setString(2, dto.getStdHp());
+			psmt.setInt(3, dto.getStdYear());
+			psmt.setString(4, dto.getStdAddress());
+			psmt.setString(5, dto.getStdNo());
+			
+			psmt.executeUpdate();
+			
+			closeAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	public void delete(String stdNo) {
 		

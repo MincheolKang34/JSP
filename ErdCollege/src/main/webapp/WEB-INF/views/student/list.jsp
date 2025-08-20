@@ -28,10 +28,12 @@
 					<td>${ student.stdHp }</td>
 					<td>${ student.stdYear }</td>
 					<td>${ student.stdAddress }</td>
+					<c:if test="${ student.stdNo == sessStudent.stdNo }">
 					<td>
 						<a href="/ErdCollege/student/modify.do?">수정</a>
 						<a href="/ErdCollege/student/delete.do?">삭제</a>
 					</td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</table>
