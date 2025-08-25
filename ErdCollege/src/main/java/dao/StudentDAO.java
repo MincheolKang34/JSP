@@ -125,6 +125,15 @@ public class StudentDAO extends DBHelper {
 		}
 	}
 	public void delete(String stdNo) {
-		
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			String sql = "DELETE FROM STUDENT WHERE stdNo='"+stdNo+"'";
+			stmt.executeUpdate(sql);
+			
+			closeAll();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
