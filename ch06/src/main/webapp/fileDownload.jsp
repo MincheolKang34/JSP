@@ -1,4 +1,4 @@
-<%@page import="dto.FileDTO"%>
+<%@page import="jboard.dto.FileDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
