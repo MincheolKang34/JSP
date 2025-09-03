@@ -3,6 +3,9 @@ package jboard.controller.article;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jboard.dto.ArticleDTO;
+import jboard.dto.PagenationDTO;
 import jboard.service.ArticleService;
 
 @WebServlet("/article/list.do")
@@ -18,6 +22,8 @@ public class ListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private ArticleService articleService = ArticleService.INSTANCE;
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,39 +31,18 @@ public class ListController extends HttpServlet {
 		// 요청 페이지 번호 수신
 		String pg = req.getParameter("pg");
 		
-		// 전체 게시물 갯수 구하기
-		int total = articleService.getCountTotal();
+		// 페이지네이션 처리 요청
+		PagenationDTO pagenationDTO = articleService.getPagenationInfo(pg);
 		
-		// 마지막 페이지 번호 구하기
-		int lastPageNum = 0;
-		if (total % 10 == 0) {
-			lastPageNum = total / 10;     // 10으로 나누어 떨어짐
-		}else {
-			lastPageNum = total / 10 + 1; // 10으로 나누어 떨어지지 않음
-		}
+		List<ArticleDTO> dtoList = articleService.findAll(pagenationDTO.getCurrentPage());
 		
-		// 현재 페이지 번호 시작값 구하기
-		int page = 1;
-		if (pg != null) {
-			page = Integer.parseInt(pg);
-		}
-		int start = (page - 1) * 10;
-		
-		// 현재 페이지 그룹 구하기
-		int currentPageGroup = (int) Math.ceil(page / 10.0);
-		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
-		int pageGroupEnd = currentPageGroup * 10;
-		
-		if (pageGroupEnd > lastPageNum) {
-			pageGroupEnd = lastPageNum;
-		}
-		
-		List<ArticleDTO> dtoList = articleService.findAll(start);
-		
+		req.setAttribute("pagenationDTO", pagenationDTO);
 		req.setAttribute("dtoList", dtoList);
-		req.setAttribute("lastPageNum", lastPageNum);
-		req.setAttribute("pageGroupStart", pageGroupStart);
-		req.setAttribute("pageGroupEnd", pageGroupEnd);
+		
+		logger.debug("dtoList\n");
+		for (ArticleDTO articleDTO : dtoList) {
+			logger.debug(articleDTO.toString());
+		}
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/article/list.jsp");
 		dispatcher.forward(req, resp);
