@@ -32,10 +32,10 @@ public class User1Service {
 	public List<User1DTO> findAll() {
 		return dao.selectAllUser1();
 	}
-	public void modify(User1DTO dto) {
-		dao.updateUser1(dto);
+	public int modify(User1DTO dto) {
+		return dao.updateUser1(dto);
 	}
-	public void delete(String user_id) {
-		dao.deleteUser1(user_id);
+	public int delete(String user_id) {
+		return dao.deleteUser1(user_id);
 	}
 }

@@ -57,6 +57,8 @@ public class RegisterController extends HttpServlet {
 		json.addProperty("result", rowCount);
 		
 		// JSON 출력(클라이언트 전송)
+		resp.setContentType("application/json; charset=UTF-8");
+		
 		PrintWriter out = resp.getWriter();
 		out.print(json.toString());
 	}

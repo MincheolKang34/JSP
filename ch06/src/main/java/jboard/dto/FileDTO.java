@@ -1,4 +1,4 @@
-package dto;
+package jboard.dto;
 
 public class FileDTO {
 	private int no;

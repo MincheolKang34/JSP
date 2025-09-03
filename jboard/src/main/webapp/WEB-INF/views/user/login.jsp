@@ -1,8 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
+<script>
+	const message = `${requestScope.message}`;
+	
+	if(message != ''){
+		alert(message);
+	}
+</script>
 <main id="user">
     <section class="login">
-        <form action="../article/list.html">                    
+        <form action="/jboard/user/login.do" method="post">                    
             <table border="0">
                 <tr>
                     <td><img src="../images/login_ico_id.png" alt="아이디"/></td>
