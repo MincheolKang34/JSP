@@ -11,14 +11,17 @@ public enum ArticleService {
 	
 	private ArticleDAO dao = ArticleDAO.getInstance();
 	
-	public void register(ArticleDTO dto) {
-		dao.insert(dto);
+	public int register(ArticleDTO dto) {
+		return dao.insert(dto);
+	}
+	public int getCountTotal() {
+		return dao.selectCountTotal();
 	}
 	public ArticleDTO findById(int ano) {
 		return dao.select(ano);
 	}
-	public List<ArticleDTO> findAll() {
-		return dao.selectAll();
+	public List<ArticleDTO> findAll(int start) {
+		return dao.selectAll(start);
 	}
 	public void modify(ArticleDTO dto) {
 		dao.update(dto);

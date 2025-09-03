@@ -13,6 +13,15 @@ public class ArticleDTO {
 	private String reg_ip;
 	private String wdate;
 	
+	// 추가 필드
+	private String nick;
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+	
 	public int getAno() {
 		return ano;
 	}
@@ -68,7 +77,7 @@ public class ArticleDTO {
 		this.reg_ip = reg_ip;
 	}
 	public String getWdate() {
-		return wdate;
+		return wdate.substring(2, 10);
 	}
 	public void setWdate(String wdate) {
 		this.wdate = wdate;

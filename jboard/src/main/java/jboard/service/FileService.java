@@ -1,6 +1,7 @@
 package jboard.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -22,8 +23,9 @@ public enum FileService {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	public int fileUpload(HttpServletRequest req) {
+	public List<FileDTO> fileUpload(HttpServletRequest req) {
 		
+		List<FileDTO> files = new ArrayList<FileDTO>();
 		
 		// 파일업로드 디렉터리 경로 생성 및 파일 크기
 		ServletContext ctx = req.getServletContext();
@@ -33,8 +35,6 @@ public enum FileService {
 		if (!uploadPath.exists()) {
 			uploadPath.mkdir();
 		}
-		
-		int count = 0;
 		
 		try {
 			// 업로드 파일 Part(업로드된 파일) 첨부 파일에서 가져오기
@@ -55,14 +55,20 @@ public enum FileService {
 					
 					// 파일 저장(경로 + 구분자 + 중복되지 않는 파일명)
 					part.write(path + File.separator + savedName);
-					count++;
+					
+					// 반환 DTO 생성
+					FileDTO dto = new FileDTO();
+					dto.setOname(oriName);
+					dto.setSname(savedName);
+					
+					files.add(dto);
 				}
 			}
 			
 		}catch(Exception e) {
 			logger.error(e.getMessage());
 		}
-		return count;
+		return files;
 	}
 	
 	public void fileDownload() {}

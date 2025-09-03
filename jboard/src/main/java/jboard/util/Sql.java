@@ -17,5 +17,16 @@ public class Sql {
 	public static final String INSERT_USER = "INSERT INTO TB_USER (USID, PASS, US_NAME, NICK, EMAIL, HP, ZIP, ADDR1, ADDR2, REG_IP, REG_DATE) "
 												+ "VALUES (?,STANDARD_HASH(?, 'SHA256'),?,?,?,?,?,?,?,?,SYSDATE)";
 	
+	// article
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM TB_ARTICLE";
+	public static final String SELECT_ARTICLE_ALL = "SELECT a.*, tu.NICK FROM tb_article a "
+													+ "JOIN TB_USER tu ON a.WRITER = tu.USID "
+													+ "ORDER BY ano DESC "
+													+ "OFFSET ? ROWS FETCH NEXT 10 ROWS ONLY";
+	
+	public static final String SELECT_MAX_ANO = "SELECT max(ano) FROM TB_ARTICLE";
 	public static final String INSERT_ARTICLE = "INSERT INTO TB_ARTICLE (TITLE, CONTENT, FILE_CNT, WRITER, REG_IP, WDATE) VALUES (?,?,?,?,?,sysdate)";
+	
+	// file
+	public static final String INSERT_FILE = "INSERT INTO tb_file (ano, oname, sname, rdate) VALUES (?,?,?,sysdate)";
 }
