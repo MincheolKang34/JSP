@@ -6,7 +6,8 @@ public enum ResultCode {
 	LOGIN_FAIL(101, "로그인이 실패했습니다. 아이디/비밀번호를 다시 확인하십시오."),
 	LOGOUT_SUCCESS(102, "로그아웃 했습니다. 안녕히 가십시오."),
 	LOGIN_REQUIRE(103, "로그인을 하셔야 합니다."),
-	WRITER_SUCCESS(200, "글작성 완료 했습니다.");
+	WRITER_SUCCESS(200, "글작성 완료 했습니다."),
+	COMMENT_SUCCESS(300, "댓글 작성 완료 했습니다.");
 	
 	private final int code;
 	private final String message;

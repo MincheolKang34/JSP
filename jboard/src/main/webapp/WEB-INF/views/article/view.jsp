@@ -60,8 +60,10 @@
         <!-- 댓글쓰기 -->
         <section class="commentForm">
             <h3>댓글쓰기</h3>
-            <form action="#">
-                <textarea name="content">댓글내용 입력</textarea>
+            <form action="/jboard/comment/write.do" method="post">
+            	<input type="hidden" name="ano" value="${ articleDTO.ano }">
+            	<input type="hidden" name="writer" value="${ sessUser.usid }">
+                <textarea name="content" placeholder="댓글 입력"></textarea>
                 <div>
                     <a href="#" class="btn btnCancel">취소</a>
                     <input type="submit" value="작성완료" class="btn btnComplete"/>
