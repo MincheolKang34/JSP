@@ -32,7 +32,7 @@
                 <td>
                 	${ pagenationDTO.currentPageStartNum - status.index }
                 </td>
-                <td><a href="/jboard/article/view.do">${ article.title }[${ article.comment_cnt }]</a></td>
+                <td><a href="/jboard/article/view.do?ano=${ article.ano }">${ article.title }[${ article.comment_cnt }]</a></td>
                 <td>${ article.nick }</td>
                 <td>${ article.wdate }</td>
                 <td>${ article.hit_cnt }</td>

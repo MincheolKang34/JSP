@@ -34,15 +34,13 @@ public class ListController extends HttpServlet {
 		// 페이지네이션 처리 요청
 		PagenationDTO pagenationDTO = articleService.getPagenationInfo(pg);
 		
-		List<ArticleDTO> dtoList = articleService.findAll(pagenationDTO.getCurrentPage());
+		List<ArticleDTO> dtoList = articleService.findAll(pagenationDTO.getStart());
 		
 		req.setAttribute("pagenationDTO", pagenationDTO);
 		req.setAttribute("dtoList", dtoList);
 		
-		logger.debug("dtoList\n");
-		for (ArticleDTO articleDTO : dtoList) {
-			logger.debug(articleDTO.toString());
-		}
+		logger.debug("article/ListController");
+		logger.debug(pagenationDTO.toString());
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/article/list.jsp");
 		dispatcher.forward(req, resp);

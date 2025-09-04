@@ -53,13 +53,14 @@ public enum ArticleService {
 		
 		PagenationDTO dto = new PagenationDTO();
 		dto.setTotal(total);
+		dto.setStart(start);
 		dto.setCurrentPage(currentPage);
 		dto.setCurrentPageStartNum(currentPageStartNum);
 		dto.setLastPageNum(lastPageNum);
 		dto.setPageGroupStart(currentPageGroupStart);
 		dto.setPageGroupEnd(currentPageGroupEnd);
 		
-		logger.debug(dto.toString());
+		logger.debug("ArticleService\n"+dto.toString());
 		
 		return dto;
 	}
@@ -70,8 +71,8 @@ public enum ArticleService {
 	public int getCountTotal() {
 		return dao.selectCountTotal();
 	}
-	public ArticleDTO findById(int ano) {
-		return dao.select(ano);
+	public ArticleDTO findArticleWithFile(String ano) {
+		return dao.selectArticleWithFile(ano);
 	}
 	public List<ArticleDTO> findAll(int start) {
 		return dao.selectAll(start);

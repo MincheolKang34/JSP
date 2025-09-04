@@ -24,9 +24,16 @@ public class Sql {
 													+ "ORDER BY ano DESC "
 													+ "OFFSET ? ROWS FETCH NEXT 10 ROWS ONLY";
 	
+	public final static String SELECT_ARTICLE_BY_ANO_WITH_FILE = "SELECT ta.*, tu.NICK, tf.* FROM TB_ARTICLE ta "
+																+ "JOIN TB_USER tu ON ta.WRITER = tu.USID "
+																+ "LEFT JOIN TB_FILE tf ON ta.ANO = tf.ANO "
+																+ "WHERE ta.ANO=?";
+	
 	public static final String SELECT_MAX_ANO = "SELECT max(ano) FROM TB_ARTICLE";
 	public static final String INSERT_ARTICLE = "INSERT INTO TB_ARTICLE (TITLE, CONTENT, FILE_CNT, WRITER, REG_IP, WDATE) VALUES (?,?,?,?,?,sysdate)";
 	
 	// file
 	public static final String INSERT_FILE = "INSERT INTO tb_file (ano, oname, sname, rdate) VALUES (?,?,?,sysdate)";
+	public static final String SELECT_FILE = "SELECT * FROM TB_FILE WHERE fno=?";
+	public static final String UPDATE_FILE_DOWNLOAD = "UPDATE TB_FILE SET DOWNLOAD = DOWNLOAD + 1 WHERE FNO=?";
 }

@@ -3,6 +3,7 @@ package jboard.dto;
 public class PagenationDTO {
 
 	private int total;
+	private int start;
 	private int currentPage;
 	private int lastPageNum;
 	private int pageGroupStart;
@@ -13,6 +14,12 @@ public class PagenationDTO {
 	}
 	public void setTotal(int total) {
 		this.total = total;
+	}
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
 	}
 	public int getCurrentPage() {
 		return currentPage;
@@ -47,8 +54,9 @@ public class PagenationDTO {
 	
 	@Override
 	public String toString() {
-		return "PagenationDTO [total=" + total + ", currentPage=" + currentPage + ", lastPageNum=" + lastPageNum
-				+ ", pageGroupStart=" + pageGroupStart + ", pageGroupEnd=" + pageGroupEnd + ", currentPageStartNum="
-				+ currentPageStartNum + "]";
+		return "PagenationDTO [total=" + total + ", start=" + start + ", currentPage=" + currentPage + ", lastPageNum="
+				+ lastPageNum + ", pageGroupStart=" + pageGroupStart + ", pageGroupEnd=" + pageGroupEnd
+				+ ", currentPageStartNum=" + currentPageStartNum + "]";
 	}
+	
 }

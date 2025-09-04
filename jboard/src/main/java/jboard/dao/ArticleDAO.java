@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import jboard.dto.ArticleDTO;
+import jboard.dto.FileDTO;
 import jboard.util.DBHelper;
 import jboard.util.Sql;
 
@@ -79,8 +80,50 @@ public class ArticleDAO extends DBHelper {
 		return total;
 	}
 	
-	public ArticleDTO select(int ano) {
-		return null;
+	public ArticleDTO selectArticleWithFile(String ano) {
+		ArticleDTO dto = null;
+		
+		List<FileDTO> fileList = new ArrayList<FileDTO>();
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_ARTICLE_BY_ANO_WITH_FILE);
+			psmt.setString(1, ano);
+			
+			rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				if(dto == null) {
+					dto = new ArticleDTO();
+					dto.setAno(rs.getInt(1));
+					dto.setCate(rs.getString(2));
+					dto.setTitle(rs.getString(3));
+					dto.setContent(rs.getString(4));
+					dto.setComment_cnt(rs.getInt(5));
+					dto.setFile_cnt(rs.getInt(6));
+					dto.setHit_cnt(rs.getInt(7));
+					dto.setWriter(rs.getString(8));
+					dto.setReg_ip(rs.getString(9));
+					dto.setWdate(rs.getString(10));
+					dto.setNick(rs.getString(11));
+				}
+				
+				FileDTO fileDTO = new FileDTO();
+				fileDTO.setFno(rs.getInt(12));
+				fileDTO.setAno(rs.getInt(13));
+				fileDTO.setOname(rs.getString(14));
+				fileDTO.setSname(rs.getString(15));
+				fileDTO.setDownload(rs.getInt(16));
+				fileDTO.setRdate(rs.getString(17));
+				fileList.add(fileDTO);
+				
+			}
+			dto.setFiles(fileList);
+			closeAll();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return dto;
 	}
 	public List<ArticleDTO> selectAll(int start) {
 		List<ArticleDTO> dtoList = new ArrayList<ArticleDTO>();
