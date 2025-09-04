@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jboard.dto.ArticleDTO;
+import jboard.dto.PagenationDTO;
 import jboard.service.ArticleService;
 
 @WebServlet("/article/search.do")
@@ -26,14 +27,22 @@ public class SearchListController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String pg = req.getParameter("pg");
 		String searchType = req.getParameter("searchType");
 		String keyword = req.getParameter("keyword");
 		
-		List<ArticleDTO> dtoList = articleService.findAllSearch(searchType, keyword);
+		PagenationDTO pagenationDTO = articleService.getPagenationInfo(pg, searchType, keyword);
+		
+		int start = pagenationDTO.getStart(); 
+				
+		List<ArticleDTO> dtoList = articleService.findAllSearch(start, searchType, keyword);
 		
 		req.setAttribute("dtoList", dtoList);
+		req.setAttribute("searchType", searchType);
+		req.setAttribute("keyword", keyword);
+		req.setAttribute("pagenationDTO", pagenationDTO);
 		
-		logger.debug("SearchListController"+dtoList.get(0).toString());
+//		logger.debug("SearchListController"+dtoList.get(0).toString());
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/article/searchList.jsp");
 		dispatcher.forward(req, resp);

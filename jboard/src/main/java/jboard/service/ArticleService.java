@@ -18,11 +18,16 @@ public enum ArticleService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	// 게시판 페이지네이션 처리 메서드
-	public PagenationDTO getPagenationInfo(String pg) {
+	public PagenationDTO getPagenationInfo(String pg, String searchType, String keyword) {
 		
+		int total = 0;
 		
 		// 전체 게시물 갯수 구하기
-		int total = dao.selectCountTotal();
+		if (keyword == null) {
+			total = dao.selectCountTotal();
+		} else {
+			total = dao.selectCountSearch(searchType, keyword);
+		}
 		
 		// 마지막 페이지 번호 구하기
 		int lastPageNum = 0;
@@ -77,8 +82,8 @@ public enum ArticleService {
 	public List<ArticleDTO> findAll(int start) {
 		return dao.selectAll(start);
 	}
-	public List<ArticleDTO> findAllSearch(String searchType, String keyword) {
-		return dao.selectArticleSearch(searchType, keyword);
+	public List<ArticleDTO> findAllSearch(int start, String searchType, String keyword) {
+		return dao.selectArticleSearch(start, searchType, keyword);
 	}
 	public void modify(ArticleDTO dto) {
 		dao.update(dto);

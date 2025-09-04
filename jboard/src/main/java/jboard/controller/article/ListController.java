@@ -32,7 +32,7 @@ public class ListController extends HttpServlet {
 		String pg = req.getParameter("pg");
 		
 		// 페이지네이션 처리 요청
-		PagenationDTO pagenationDTO = articleService.getPagenationInfo(pg);
+		PagenationDTO pagenationDTO = articleService.getPagenationInfo(pg, null, null);
 		
 		List<ArticleDTO> dtoList = articleService.findAll(pagenationDTO.getStart());
 		

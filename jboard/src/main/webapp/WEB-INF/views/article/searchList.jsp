@@ -6,7 +6,7 @@
         <nav>
             <h1>
                 <a href="/jboard/article/list.do">전체 글목록</a>&nbsp;/&nbsp;검색 
-                <span>12건</span>
+                <span>${ pagenationDTO.total }건</span>
             </h1>
             <jsp:include page="./_searchForm.jsp"></jsp:include>
         </nav>
@@ -22,7 +22,7 @@
             <c:forEach var="article" items="${ dtoList }" varStatus="status">
             <tr>
                 <td>
-                	${ status.index }
+                	${ pagenationDTO.currentPageStartNum - status.index }
                 </td>
                 <td><a href="/jboard/article/view.do?ano=${ article.ano }">${ article.title }[${ article.comment_cnt }]</a></td>
                 <td>${ article.nick }</td>
@@ -34,11 +34,15 @@
         </table>
 
         <div class="page">
-            <a href="#" class="prev">이전</a>
-            <a href="#" class="num current">1</a>
-            <a href="#" class="num">2</a>
-            <a href="#" class="num">3</a>
-            <a href="#" class="next">다음</a>
+            <c:if test="${ pagenationDTO.pageGroupStart > 1 }">
+            	<a href="/jboard/article/search.do?pg=${ pagenationDTO.pageGroupStart-1 }&searchType=${searchType}&keyword=${keyword}" class="prev">이전</a>
+            </c:if>
+            <c:forEach var="num" begin="${ pagenationDTO.pageGroupStart }" end="${ pagenationDTO.pageGroupEnd }">
+            	<a href="/jboard/article/search.do?pg=${ num }&searchType=${searchType}&keyword=${keyword}" class="num ${ pagenationDTO.currentPage == num ? 'current' : 'off' }">${ num }</a>
+            </c:forEach>
+            <c:if test="${ pagenationDTO.pageGroupEnd < pagenationDTO.lastPageNum }">
+            	<a href="/jboard/article/search.do?pg=${ pagenationDTO.pageGroupEnd+1 }&searchType=${searchType}&keyword=${keyword}" class="next">다음</a>
+            </c:if>
         </div>
 
         <a href="./write.html" class="btn btnWrite">글쓰기</a>

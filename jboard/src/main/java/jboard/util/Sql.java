@@ -29,12 +29,17 @@ public class Sql {
 																+ "LEFT JOIN TB_FILE tf ON ta.ANO = tf.ANO "
 																+ "WHERE ta.ANO=?";
 	
+	public static final String SELECT_COUNT_SEARCH = "SELECT COUNT(*) FROM TB_ARTICLE ta "
+														+ "JOIN TB_USER tu ON ta.WRITER = tu.USID ";
 	public static final String SELECT_ARTICLE_SEARCH = "SELECT ta.*, tu.NICK FROM TB_ARTICLE ta "
 														+ "JOIN TB_USER tu ON ta.WRITER = tu.USID ";
 	
 	public static final String SEARCH_WHERE_TITLE = "WHERE TITLE LIKE ?";
 	public static final String SEARCH_WHERE_CONTENT = "WHERE CONTENT LIKE ?";
 	public static final String SEARCH_WHERE_NICK = "WHERE NICK LIKE ?";
+	
+	public static final String SEARCH_ORDER_ANO = "ORDER BY ANO DESC ";
+	public static final String SEARCH_OFFSET_ROW = "OFFSET ? ROWS FETCH NEXT 10 ROWS ONLY";
 	
 	public static final String SELECT_MAX_ANO = "SELECT max(ano) FROM TB_ARTICLE";
 	public static final String INSERT_ARTICLE = "INSERT INTO TB_ARTICLE (TITLE, CONTENT, FILE_CNT, WRITER, REG_IP, WDATE) VALUES (?,?,?,?,?,sysdate)";

@@ -14,19 +14,22 @@ import jboard.util.Sql;
 public class ArticleDAO extends DBHelper {
 
 	private final static ArticleDAO INSTANCE = new ArticleDAO();
+
 	public static ArticleDAO getInstance() {
 		return INSTANCE;
 	}
-	private ArticleDAO() {}
-	
+
+	private ArticleDAO() {
+	}
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	public int insert(ArticleDTO dto) {
 		int ano = 0;
-		
+
 		try {
 			conn = getConnection();
-			
+
 			conn.setAutoCommit(false);
 			psmt = conn.prepareStatement(Sql.INSERT_ARTICLE);
 			psmt.setString(1, dto.getTitle());
@@ -35,18 +38,18 @@ public class ArticleDAO extends DBHelper {
 			psmt.setString(4, dto.getWriter());
 			psmt.setString(5, dto.getReg_ip());
 			psmt.executeUpdate();
-			
+
 			// 방금 insert한 글 번호 조회
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(Sql.SELECT_MAX_ANO);
-			
+
 			if (rs.next()) {
 				ano = rs.getInt(1);
 			}
-			
+
 			conn.commit();
 			closeAll();
-			
+
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			try {
@@ -55,45 +58,45 @@ public class ArticleDAO extends DBHelper {
 				e2.getMessage();
 			}
 		}
-		
+
 		return ano;
 	}
-	
+
 	public int selectCountTotal() {
-		
+
 		int total = 0;
-		
+
 		try {
 			conn = getConnection();
-			
+
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(Sql.SELECT_COUNT_TOTAL);
-			
+
 			if (rs.next()) {
 				total = rs.getInt(1);
 			}
-			
+
 			closeAll();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 		return total;
 	}
-	
+
 	public ArticleDTO selectArticleWithFile(String ano) {
 		ArticleDTO dto = null;
-		
+
 		List<FileDTO> fileList = new ArrayList<FileDTO>();
-		
+
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_ARTICLE_BY_ANO_WITH_FILE);
 			psmt.setString(1, ano);
-			
+
 			rs = psmt.executeQuery();
-			
+
 			while (rs.next()) {
-				if(dto == null) {
+				if (dto == null) {
 					dto = new ArticleDTO();
 					dto.setAno(rs.getInt(1));
 					dto.setCate(rs.getString(2));
@@ -107,7 +110,7 @@ public class ArticleDAO extends DBHelper {
 					dto.setWdate(rs.getString(10));
 					dto.setNick(rs.getString(11));
 				}
-				
+
 				FileDTO fileDTO = new FileDTO();
 				fileDTO.setFno(rs.getInt(12));
 				fileDTO.setAno(rs.getInt(13));
@@ -116,7 +119,7 @@ public class ArticleDAO extends DBHelper {
 				fileDTO.setDownload(rs.getInt(16));
 				fileDTO.setRdate(rs.getString(17));
 				fileList.add(fileDTO);
-				
+
 			}
 			dto.setFiles(fileList);
 			closeAll();
@@ -125,13 +128,14 @@ public class ArticleDAO extends DBHelper {
 		}
 		return dto;
 	}
+
 	public List<ArticleDTO> selectAll(int start) {
 		List<ArticleDTO> dtoList = new ArrayList<ArticleDTO>();
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_ARTICLE_ALL);
 			psmt.setInt(1, start);
-			
+
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				ArticleDTO dto = new ArticleDTO();
@@ -153,23 +157,57 @@ public class ArticleDAO extends DBHelper {
 		}
 		return dtoList;
 	}
-	public List<ArticleDTO> selectArticleSearch(String searchType, String keyword) {
-		List<ArticleDTO> dtoList = new ArrayList<ArticleDTO>();
-		StringBuilder sql = new StringBuilder(Sql.SELECT_ARTICLE_SEARCH);
-		
+
+	public int selectCountSearch(String searchType, String keyword) {
+		int total = 0;
+
+		StringBuilder sql = new StringBuilder(Sql.SELECT_COUNT_SEARCH);
+
 		if (searchType.equals("title")) {
 			sql.append(Sql.SEARCH_WHERE_TITLE);
-		}else if(searchType.equals("content")) {
+		} else if (searchType.equals("content")) {
 			sql.append(Sql.SEARCH_WHERE_CONTENT);
-		}else if(searchType.equals("nick")) {
+		} else if (searchType.equals("nick")) {
 			sql.append(Sql.SEARCH_WHERE_NICK);
 		}
-		
+
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(sql.toString());
 			psmt.setString(1, "%" + keyword + "%");
-			
+
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+
+		return total;
+	}
+
+	public List<ArticleDTO> selectArticleSearch(int start, String searchType, String keyword) {
+		List<ArticleDTO> dtoList = new ArrayList<ArticleDTO>();
+		StringBuilder sql = new StringBuilder(Sql.SELECT_ARTICLE_SEARCH);
+
+		if (searchType.equals("title")) {
+			sql.append(Sql.SEARCH_WHERE_TITLE);
+		} else if (searchType.equals("content")) {
+			sql.append(Sql.SEARCH_WHERE_CONTENT);
+		} else if (searchType.equals("nick")) {
+			sql.append(Sql.SEARCH_WHERE_NICK);
+		}
+		sql.append(Sql.SEARCH_ORDER_ANO);
+		sql.append(Sql.SEARCH_OFFSET_ROW);
+
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql.toString());
+			psmt.setString(1, "%" + keyword + "%");
+			psmt.setInt(2, start);
+
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				ArticleDTO dto = new ArticleDTO();
@@ -191,10 +229,12 @@ public class ArticleDAO extends DBHelper {
 		}
 		return dtoList;
 	}
+
 	public void update(ArticleDTO dto) {
-		
+
 	}
+
 	public void delete(int ano) {
-		
+
 	}
 }
