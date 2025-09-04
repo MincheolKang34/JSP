@@ -12,8 +12,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jboard.dto.ArticleDTO;
 import jboard.dto.PagenationDTO;
+import jboard.dto.UserDTO;
 import jboard.service.ArticleService;
 
 @WebServlet("/article/list.do")
@@ -34,10 +36,17 @@ public class ListController extends HttpServlet {
 		// 페이지네이션 처리 요청
 		PagenationDTO pagenationDTO = articleService.getPagenationInfo(pg, null, null);
 		
-		List<ArticleDTO> dtoList = articleService.findAll(pagenationDTO.getStart());
+		int start = pagenationDTO.getStart();
+		List<ArticleDTO> dtoList = articleService.findAll(start);
+		
+		// 현재 사용자 권한 확인
+		HttpSession session = req.getSession();
+		UserDTO sessUser = (UserDTO) session.getAttribute("sessUser");
+		String role = sessUser.getUs_role();
 		
 		req.setAttribute("pagenationDTO", pagenationDTO);
 		req.setAttribute("dtoList", dtoList);
+		req.setAttribute("role", role);
 		
 		logger.debug("article/ListController");
 		logger.debug(pagenationDTO.toString());

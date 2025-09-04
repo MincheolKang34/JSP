@@ -5,9 +5,11 @@ public enum ResultCode {
 	REGISTER_SUCCESS(100, "회원가입이 완료 되었습니다."),
 	LOGIN_FAIL(101, "로그인이 실패했습니다. 아이디/비밀번호를 다시 확인하십시오."),
 	LOGOUT_SUCCESS(102, "로그아웃 했습니다. 안녕히 가십시오."),
-	LOGIN_REQUIRE(103, "로그인을 하셔야 합니다."),
+	ROLE_NOT_ENOUGH(103, "권한이 없습니다. 관리자에게 문의하세요"),
+	LOGIN_REQUIRE(104, "로그인을 하셔야 합니다."),
 	WRITER_SUCCESS(200, "글작성 완료 했습니다."),
-	COMMENT_SUCCESS(300, "댓글 작성 완료 했습니다.");
+	COMMENT_SUCCESS(300, "댓글 작성 완료 했습니다."),
+	DELETE_SUCCESS(400, "글을 삭제하였습니다.");
 	
 	private final int code;
 	private final String message;

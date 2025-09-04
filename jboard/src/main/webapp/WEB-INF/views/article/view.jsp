@@ -77,6 +77,14 @@
 			.catch(err => {
 				console.log(err);
 			});
+		
+		// 글 삭제
+		const btnRemove = document.getElementsByClassName('btnRemove');
+		btnRemove.addEventListener('click', function(e){
+			if(confirm('정말 삭제하시겠습니까?')){
+				e.preventDefault();
+			}
+		});
 	});
 </script>
 <main id="article">
@@ -112,8 +120,10 @@
         </table>
         
         <div>
-            <a href="#" class="btn btnRemove">삭제</a>
-            <a href="./modify.html" class="btn btnModify">수정</a>
+        	<c:if test="${ sessUser.usid eq articleDTO.writer }">
+	            <a href="/jboard/article/delete.do?ano=${ articleDTO.ano }" class="btn btnRemove">삭제</a>
+	            <a href="/jboard/article/modify.do?ano=${ articleDTO.ano }" class="btn btnModify">수정</a>
+            </c:if>
             <a href="/jboard/article/list.do" class="btn btnList">목록</a>
         </div>
 
