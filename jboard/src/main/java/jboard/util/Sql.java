@@ -31,8 +31,17 @@ public class Sql {
 	
 	public static final String SELECT_MAX_ANO = "SELECT max(ano) FROM TB_ARTICLE";
 	public static final String INSERT_ARTICLE = "INSERT INTO TB_ARTICLE (TITLE, CONTENT, FILE_CNT, WRITER, REG_IP, WDATE) VALUES (?,?,?,?,?,sysdate)";
+	
+	// comment
 	public static final String INSERT_COMMENT = "INSERT INTO TB_COMMENT (ANO, CONTENT, WRITER, REG_IP, WDATE) "
 												+ "	VALUES (?, ?, ?, ?, SYSDATE)";
+	public static final String SELECT_COMMENT_ALL = "SELECT tc.*, tu.NICK FROM TB_COMMENT tc "
+													+ "JOIN TB_USER tu ON tc.WRITER = tu.USID "
+													+ "WHERE ano=? ORDER BY CNO ASC";
+	
+	public static final String SELECT_COMMENT_LATEST = "SELECT tc.*, tu.NICK FROM TB_COMMENT tc "
+														+ "JOIN TB_USER tu ON tc.WRITER = tu.USID "
+														+ "WHERE cno=(SELECT MAX(CNO) FROM TB_COMMENT)";
 	
 	// file
 	public static final String INSERT_FILE = "INSERT INTO tb_file (ano, oname, sname, rdate) VALUES (?,?,?,sysdate)";

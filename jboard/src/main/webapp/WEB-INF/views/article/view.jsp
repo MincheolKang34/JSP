@@ -1,6 +1,84 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ include file="./_header.jsp" %>
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function(){
+		const formComment = document.formComment; // form 태그의 name 속성으로 문서객체 참조
+		
+		formComment.addEventListener('submit', function(e){
+			e.preventDefault();
+			
+			// 폼 데이터 생성
+			const formData = new FormData();
+			formData.append('ano', formComment.ano.value);
+			formData.append('writer', formComment.writer.value);
+			formData.append('content', formComment.content.value);
+			console.log(formData);
+			
+			//데이터 전송
+			fetch('/jboard/comment/write.do',{
+				method: 'POST',
+				body: formData
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log(data);
+					
+					const commentArticle = `<article>
+								                <span class="nick">\${data.nick}</span>
+								                <span class="date">\${data.wdate}</span>
+								                <p class="content">\${data.content}</p>                        
+								                <div>
+								                    <a href="#" class="remove">삭제</a>
+								                    <a href="#" class="modify">수정</a>
+								                </div>
+								            </article>`;
+								            
+					commentList.insertAdjacentHTML('beforeEnd', commentArticle);
+					empty.remove();									            
+					
+					// 폼 초기화(입력했던 데이터 비우기)
+					formComment.reset();
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		}); // 댓글 입력 끝
+		
+		// 댓글 목록 출력
+		const commentList = document.getElementsByClassName('commentList')[0];
+		const empty = commentList.getElementsByClassName('empty')[0];
+		
+		const ano = ${ articleDTO.ano };
+		console.log('ano : ' + ano);
+		
+		fetch('/jboard/comment/list.do?ano='+ano)
+			.then(response => response.json())
+			.then(data => {
+				console.log(data);
+				
+				for (const comment of data) {
+					const commentArticle = `<article>
+								                <span class="nick">\${comment.nick}</span>
+								                <span class="date">\${comment.wdate}</span>
+								                <p class="content">\${comment.content}</p>                        
+								                <div>
+								                    <a href="#" class="remove">삭제</a>
+								                    <a href="#" class="modify">수정</a>
+								                </div>
+								            </article>`;
+								            
+					commentList.insertAdjacentHTML('beforeEnd', commentArticle);
+					empty.remove();
+				}
+				
+
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	});
+</script>
 <main id="article">
     <section class="view">
         <nav>
@@ -41,18 +119,7 @@
 
         <!-- 댓글목록 -->
         <section class="commentList">
-            <h3>댓글목록</h3>                   
-
-            <article>
-                <span class="nick">길동이</span>
-                <span class="date">20-05-20</span>
-                <p class="content">댓글 샘플 입니다.</p>                        
-                <div>
-                    <a href="#" class="remove">삭제</a>
-                    <a href="#" class="modify">수정</a>
-                </div>
-            </article>
-
+            <h3>댓글목록</h3>
             <p class="empty">등록된 댓글이 없습니다.</p>
 
         </section>
@@ -60,7 +127,7 @@
         <!-- 댓글쓰기 -->
         <section class="commentForm">
             <h3>댓글쓰기</h3>
-            <form action="/jboard/comment/write.do" method="post">
+            <form name="formComment">
             	<input type="hidden" name="ano" value="${ articleDTO.ano }">
             	<input type="hidden" name="writer" value="${ sessUser.usid }">
                 <textarea name="content" placeholder="댓글 입력"></textarea>
