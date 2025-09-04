@@ -8,15 +8,7 @@
                 전체 글목록
                 <span>${ pagenationDTO.total }건</span>
             </h1>
-            <form action="./searchList.html">
-                <select name="searchType">
-            		<option value="title">제목</option>
-            		<option value="content">내용</option>
-            		<option value="writer">글쓴이</option>
-            	</select>
-                <input type="text" name="keyword" placeholder="검색 키워드 입력">
-                <input type="submit" value="검색">
-            </form>
+            <jsp:include page="./_searchForm.jsp"></jsp:include>
         </nav>
                         
         <table border="0">                    

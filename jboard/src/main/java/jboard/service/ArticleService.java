@@ -77,6 +77,9 @@ public enum ArticleService {
 	public List<ArticleDTO> findAll(int start) {
 		return dao.selectAll(start);
 	}
+	public List<ArticleDTO> findAllSearch(String searchType, String keyword) {
+		return dao.selectArticleSearch(searchType, keyword);
+	}
 	public void modify(ArticleDTO dto) {
 		dao.update(dto);
 	}
